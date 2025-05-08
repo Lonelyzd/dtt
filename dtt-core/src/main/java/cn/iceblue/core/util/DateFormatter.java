@@ -1,18 +1,17 @@
 package cn.iceblue.core.util;
 
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import java.text.ParseException;
 import java.util.Date;
 
+@Slf4j
 public class DateFormatter {
     public final String[] PARSEPATTERNS = new String[]{"yyyy-MM",
             "yyyyMM", "yyyy/MM", "yyyyMMdd", "yyyy-MM-dd", "yyyy/MM/dd",
             "yyyyMMddHHmmss", "yyyy-MM-dd HH:mm:ss", "yyyy/MM/dd HH:mm:ss"};
-    Logger logger = LoggerFactory.getLogger(DateFormatter.class);
 
     public Date format(Object value) {
         if (value instanceof Date) {
@@ -22,7 +21,7 @@ public class DateFormatter {
                 try {
                     return DateUtils.parseDate(String.valueOf(value), PARSEPATTERNS);
                 } catch (ParseException e) {
-                    logger.debug("@@@ 非法日期！以 NULL 处理。", e);
+                    log.error("日期格式化异常", e);
                 }
             }
         }
