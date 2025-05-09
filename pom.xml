@@ -37,6 +37,7 @@
         <maven-flatten-plugin.version>1.7.0</maven-flatten-plugin.version>
         <maven.deploy.version>3.1.4</maven.deploy.version>
 
+        <mybatis-plus.version>3.5.2</mybatis-plus.version>
         <mybatis-plus.start.version>3.5.2</mybatis-plus.start.version>
         <mssql-jdbc.version>12.6.3.jre8</mssql-jdbc.version>
         <postgresql.version>42.3.8</postgresql.version>
@@ -57,13 +58,6 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-to-slf4j</artifactId>
             <version>${log4j2.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-bom</artifactId>
-            <version>${log4j2.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -129,6 +123,12 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.start.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <version>${mybatis-plus.version}</version>
             </dependency>
 
             <dependency>

@@ -10,6 +10,13 @@
     </parent>
 
     <artifactId>dtt-api</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-annotation</artifactId>
+           <optional>true</optional>
+        </dependency>
+    </dependencies>
 
 
 </project>
