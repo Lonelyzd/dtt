@@ -13,14 +13,13 @@
     <version>${revision}</version>
     <name>dtt</name>
 
-
-
     <modules>
         <module>dtt-web</module>
         <module>dtt-core</module>
         <module>dtt-api</module>
         <module>dtt-test</module>
         <module>dtt-data</module>
+        <module>dtt-ui</module>
     </modules>
     <packaging>pom</packaging>
     <description>Data Transmission Tool</description>
