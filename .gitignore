@@ -1,0 +1,35 @@
+# maven #
+target
+
+logs
+
+# windows #
+Thumbs.db
+
+# Mac #
+.DS_Store
+
+# eclipse #
+.settings
+.project
+.classpath
+.log
+*.class
+
+# idea #
+.idea
+*.iml
+
+# Package Files #
+target/*.jar
+*.war
+*.ear
+/target
+/ehcache
+tss-start/ehcache
+/redis
+tss-start/redis
+
+.flattened-pom.xml
+
+.back_dtt

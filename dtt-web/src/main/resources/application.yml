@@ -1,0 +1,8 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:4803/HOSPITAL_HDW
+    driver-class-name: org.postgresql.Driver
+    username: gpadmin
+    password: wn@123
