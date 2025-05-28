@@ -1,29 +1,25 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-import app from './modules/app'
-import user from './modules/user'
-
-// default router permission control
-// 默认路由模式为静态路由 (router.config.js)
-import permission from './modules/static-router'
-
-// dynamic router permission control (Experimental)
-// 动态路由模式（api请求后端生成）
-// import permission from './modules/async-router'
-
 import getters from './getters'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  modules: {
-    app,
-    user,
-    permission
-  },
-  state: {},
-  mutations: {},
-  actions: {},
+// https://webpack.js.org/guides/dependency-management/#requirecontext
+const modulesFiles = require.context('./modules', true, /\.js$/)
+
+// you do not need `import app from './modules/app'`
+// it will auto require all vuex module from modules file
+const modules = modulesFiles.keys().reduce((modules, modulePath) => {
+  // set './app.js' => 'app'
+  const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
+  const value = modulesFiles(modulePath)
+  modules[moduleName] = value.default
+  return modules
+}, {})
+
+const store = new Vuex.Store({
+  modules,
   getters
 })
+
+export default store
