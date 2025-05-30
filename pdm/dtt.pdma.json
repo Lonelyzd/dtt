@@ -4,15 +4,15 @@
   "avatar": "",
   "version": "4.9.4",
   "createdTime": "2025-5-9 13:32:54",
-  "updatedTime": "2025-5-9 17:10:01",
+  "updatedTime": "2025-5-30 14:59:48",
   "dbConns": [],
   "profile": {
     "default": {
       "db": "DFBEC1DD-AA84-456E-BBF3-C95DD0DB2022",
-      "dbConn": "",
+      "dbConn": "0F6D7732-C96F-4971-A8DA-83AD0B2D91D4",
       "entityInitFields": [
         {
-          "defKey": "TENANT_ID",
+          "defKey": "tenant_id",
           "defName": "租户号",
           "comment": "",
           "type": "",
@@ -30,7 +30,7 @@
           "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
         },
         {
-          "defKey": "REVISION",
+          "defKey": "revision",
           "defName": "乐观锁",
           "comment": "",
           "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
@@ -48,7 +48,7 @@
           "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811"
         },
         {
-          "defKey": "CREATED_BY",
+          "defKey": "created_by",
           "defName": "创建人",
           "comment": "",
           "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
@@ -66,7 +66,7 @@
           "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
         },
         {
-          "defKey": "CREATED_TIME",
+          "defKey": "created_time",
           "defName": "创建时间",
           "comment": "",
           "domain": "7CFFA0D3-6A93-4DDC-BC10-DF21211064DC",
@@ -84,7 +84,7 @@
           "baseType": "89D69E81-EA34-42EE-9FA2-93B8BD27E098"
         },
         {
-          "defKey": "UPDATED_BY",
+          "defKey": "updated_by",
           "defName": "更新人",
           "comment": "",
           "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
@@ -102,7 +102,7 @@
           "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
         },
         {
-          "defKey": "UPDATED_TIME",
+          "defKey": "updated_time",
           "defName": "更新时间",
           "comment": "",
           "domain": "7CFFA0D3-6A93-4DDC-BC10-DF21211064DC",
@@ -1237,20 +1237,2120 @@
       "correlations": [],
       "indexes": [],
       "type": "P"
+    },
+    {
+      "id": "F2FF27CB-E6BE-4820-B640-080FE38AAB28",
+      "env": {
+        "base": {
+          "nameSpace": "cn.iceblue",
+          "codeRoot": "DttSysUser"
+        },
+        "template": {
+          "JavaMybatisPlus": {
+            "Controller": {
+              "suffix": "controller/{{=it.codeRoot}}Controller.java",
+              "enable": true
+            },
+            "Service": {
+              "suffix": "service/{{=it.codeRoot}}Service.java",
+              "enable": true
+            },
+            "ServiceImpl": {
+              "suffix": "service/impl/{{=it. codeRoot}}ServiceImpl.java",
+              "enable": true
+            },
+            "Mapper": {
+              "suffix": "mapper/{{=it.codeRoot}}Mapper.java",
+              "enable": true
+            },
+            "Mapper.xml": {
+              "suffix": "mapper/{{=it.codeRoot}}Mapper.xml",
+              "enable": true
+            },
+            "Entity": {
+              "suffix": "entity/{{=it.codeRoot}}Entity.java",
+              "enable": true
+            }
+          }
+        },
+        "custom": {}
+      },
+      "defKey": "DTT_SYS_USER",
+      "defName": "系统用户表",
+      "comment": "",
+      "properties": {
+        "partitioned by": "(date string)",
+        "row format delimited": "",
+        "fields terminated by ','": "",
+        "collection items terminated by '-'": "",
+        "map keys terminated by ':'": "",
+        "store as textfile;": ""
+      },
+      "sysProps": {
+        "nameTemplate": "{defKey}[{defName}]"
+      },
+      "notes": {},
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "extProps",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr1",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr2",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr3",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr4",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr5",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr6",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr7",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr8",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr9",
+          "freeze": false,
+          "hideInGraph": true
+        }
+      ],
+      "fields": [
+        {
+          "defKey": "id",
+          "defName": "用户ID",
+          "comment": "用户唯一ID,不可变",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": true,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "id": "B3C4AA01-5919-4D39-8BD4-125218773532"
+        },
+        {
+          "defKey": "user_code",
+          "defName": "用户CODE",
+          "comment": "用户CODE,登录使用",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "54611CCC-CA4B-42E1-9F32-4944C85B85A6",
+          "id": "49FD417D-985A-429F-8659-F0FC875EE9BB"
+        },
+        {
+          "defKey": "user_name",
+          "defName": "用户名称",
+          "comment": "用户显示名称",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "54611CCC-CA4B-42E1-9F32-4944C85B85A6",
+          "id": "174FE271-525E-4373-8DDC-EB1EA54BD9D8"
+        },
+        {
+          "defKey": "user_password",
+          "defName": "用户密码",
+          "comment": "加密保存",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "9092C4E0-1A54-4859-ABBB-5B62DBC27573",
+          "id": "71CDBF97-AA11-457D-AED5-90F96878E726"
+        },
+        {
+          "defKey": "read_only",
+          "defName": "是否只读",
+          "comment": "",
+          "type": "INTEGER",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "0",
+          "hideInGraph": false,
+          "refDict": "6113CB56-1437-4482-B6DE-FA35CCB5ACD1",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811",
+          "extProps": {},
+          "domain": "",
+          "id": "55F3FFA7-52C6-4AAC-B114-A2052005852A",
+          "uiHint": "FB111359-2B73-4443-926C-08A98E446448"
+        },
+        {
+          "defKey": "email",
+          "defName": "邮箱",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "9092C4E0-1A54-4859-ABBB-5B62DBC27573",
+          "id": "EDE899C9-C728-44CC-81B2-6014235FD3B1"
+        },
+        {
+          "defKey": "phone",
+          "defName": "手机号码",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "9092C4E0-1A54-4859-ABBB-5B62DBC27573",
+          "id": "AB61AAB9-FAF1-42B0-881C-1F4965FB27D0"
+        },
+        {
+          "defKey": "avatar",
+          "defName": "头像路径",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "3E948CEC-3070-472C-AF92-F3CA11EC9D15",
+          "id": "7EE8903C-B8A3-4351-95CC-B9808AD392FE"
+        },
+        {
+          "defKey": "status",
+          "defName": "账号状态",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "0",
+          "hideInGraph": false,
+          "refDict": "762B12DF-E162-404E-B997-4BB61D571C6A",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811",
+          "extProps": {},
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "id": "9BD2568D-8AB7-4DC8-AAC9-9B7F65E882A1"
+        },
+        {
+          "defKey": "last_login_ip",
+          "defName": "最后登录IP",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "89D69E81-EA34-42EE-9FA2-93B8BD27E098",
+          "extProps": {},
+          "domain": "7CFFA0D3-6A93-4DDC-BC10-DF21211064DC",
+          "id": "A82C1347-E662-4E0B-BAA4-ACB08F150E54"
+        },
+        {
+          "defKey": "remark",
+          "defName": "备注",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "9092C4E0-1A54-4859-ABBB-5B62DBC27573",
+          "id": "662716C8-A391-4E0B-8402-ECC8CE857DDC"
+        },
+        {
+          "defKey": "tenant_id",
+          "defName": "租户号",
+          "comment": "",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "refDict": "",
+          "uiHint": "",
+          "id": "BA43CF22-CF46-498C-AF7F-B1B9E4604E28",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
+        },
+        {
+          "defKey": "revision",
+          "defName": "乐观锁",
+          "comment": "",
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "8077E0CD-0BCA-4174-BE50-CD308AF5CC09",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811"
+        },
+        {
+          "defKey": "created_by",
+          "defName": "创建人",
+          "comment": "",
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "597F6B68-5FF8-47C1-8500-DFA43839A8F7",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
+        },
+        {
+          "defKey": "created_time",
+          "defName": "创建时间",
+          "comment": "",
+          "domain": "7CFFA0D3-6A93-4DDC-BC10-DF21211064DC",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "C9A12581-3C15-4E02-98B8-AA8E150E39B4",
+          "baseType": "89D69E81-EA34-42EE-9FA2-93B8BD27E098"
+        },
+        {
+          "defKey": "updated_by",
+          "defName": "更新人",
+          "comment": "",
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "3D333CB6-7F7F-4A3B-8399-766DED7AE17C",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
+        },
+        {
+          "defKey": "updated_time",
+          "defName": "更新时间",
+          "comment": "",
+          "domain": "7CFFA0D3-6A93-4DDC-BC10-DF21211064DC",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "4C9AABD1-38DF-4CD6-974F-BA5A7318D16C",
+          "baseType": "89D69E81-EA34-42EE-9FA2-93B8BD27E098"
+        }
+      ],
+      "correlations": [],
+      "indexes": [],
+      "type": "P",
+      "nameTemplate": "{defKey}[{defName}]"
+    },
+    {
+      "id": "EF044E3B-F2B6-4291-8899-CF2B5567503E",
+      "env": {
+        "base": {
+          "nameSpace": "",
+          "codeRoot": ""
+        }
+      },
+      "defKey": "DTT_SYS_MENU",
+      "defName": "系统菜单表",
+      "comment": "",
+      "properties": {
+        "partitioned by": "(date string)",
+        "row format delimited": "",
+        "fields terminated by ','": "",
+        "collection items terminated by '-'": "",
+        "map keys terminated by ':'": "",
+        "store as textfile;": ""
+      },
+      "sysProps": {
+        "nameTemplate": "{defKey}[{defName}]"
+      },
+      "notes": {},
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "extProps",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr1",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr2",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr3",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr4",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr5",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr6",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr7",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr8",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr9",
+          "freeze": false,
+          "hideInGraph": true
+        }
+      ],
+      "fields": [
+        {
+          "defKey": "id",
+          "defName": "菜单ID",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": true,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "id": "224AA8D2-EE4C-4109-A627-596F8042358E"
+        },
+        {
+          "defKey": "menu_name",
+          "defName": "菜单名称",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "54611CCC-CA4B-42E1-9F32-4944C85B85A6",
+          "id": "A34850FA-6B95-40B2-92F7-83157933CC1A"
+        },
+        {
+          "defKey": "parent_id",
+          "defName": "上级菜单id",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "id": "47BC8FCD-A433-4672-A54A-5C2E17C74D9C"
+        },
+        {
+          "defKey": "order_num",
+          "defName": "菜单排序",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811",
+          "extProps": {},
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "id": "F492AA4B-EA81-4EE5-A31D-D0B84F79D971"
+        },
+        {
+          "defKey": "menu_path",
+          "defName": "菜单路径",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "6113CB56-1437-4482-B6DE-FA35CCB5ACD1",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "9092C4E0-1A54-4859-ABBB-5B62DBC27573",
+          "id": "121607E2-3CA2-401F-8F9E-3C20D9BE8FD8"
+        },
+        {
+          "defKey": "frame_flag",
+          "defName": "是否为外链",
+          "comment": "1是 0否",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811",
+          "extProps": {},
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "id": "737F8CB3-BF0B-448A-8282-F437B53AD092"
+        },
+        {
+          "defKey": "is_cache",
+          "defName": "是否缓存",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "6113CB56-1437-4482-B6DE-FA35CCB5ACD1",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811",
+          "extProps": {},
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "id": "C6C912C5-D1B3-44E5-A86F-6636D4D9028C"
+        },
+        {
+          "defKey": "menu_type",
+          "defName": "菜单类型",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "1916ED1D-4CED-47B0-A8AD-BD339F43B60D",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811",
+          "extProps": {},
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "id": "DF038616-98E3-4479-B8E4-25EF54866DCA"
+        },
+        {
+          "defKey": "status",
+          "defName": "菜单状态",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "6113CB56-1437-4482-B6DE-FA35CCB5ACD1",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811",
+          "extProps": {},
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "id": "F51D30C8-0F53-41AC-B228-1EE1D61E012C"
+        },
+        {
+          "defKey": "perms",
+          "defName": "权限标识",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "9092C4E0-1A54-4859-ABBB-5B62DBC27573",
+          "id": "A74F7337-0A86-4426-B905-1CABF527E9E1"
+        },
+        {
+          "defKey": "menu_icon",
+          "defName": "菜单图标",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "9092C4E0-1A54-4859-ABBB-5B62DBC27573",
+          "id": "C6EFB45C-7284-40AC-8791-DE8B74F4E1BA"
+        },
+        {
+          "defKey": "remark",
+          "defName": "备注",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "9092C4E0-1A54-4859-ABBB-5B62DBC27573",
+          "id": "397F6933-015F-40F6-8A5E-D95B4C02A002"
+        },
+        {
+          "defKey": "read_only",
+          "defName": "是否只读",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "0",
+          "hideInGraph": false,
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "refDict": "6113CB56-1437-4482-B6DE-FA35CCB5ACD1",
+          "extProps": {},
+          "notes": {},
+          "attr1": "",
+          "attr2": "",
+          "attr3": "",
+          "attr4": "",
+          "attr5": "",
+          "attr6": "",
+          "attr7": "",
+          "attr8": "",
+          "attr9": "",
+          "id": "F8C8BB2E-54D9-4E54-A562-F519535CE5A9",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811"
+        },
+        {
+          "defKey": "tenant_id",
+          "defName": "租户号",
+          "comment": "",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "refDict": "762B12DF-E162-404E-B997-4BB61D571C6A",
+          "uiHint": "",
+          "id": "5A47C687-0F15-4732-A6C4-1DA75590A815",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
+        },
+        {
+          "defKey": "revision",
+          "defName": "乐观锁",
+          "comment": "",
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "04D85AB7-9C83-4704-8B5D-2C95E2122BE0",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811"
+        },
+        {
+          "defKey": "created_by",
+          "defName": "创建人",
+          "comment": "",
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "8A9E91EF-E8AC-48BC-92FC-CC6ACD78636C",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
+        },
+        {
+          "defKey": "created_time",
+          "defName": "创建时间",
+          "comment": "",
+          "domain": "7CFFA0D3-6A93-4DDC-BC10-DF21211064DC",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "04B72AC4-9447-4F76-8602-63658FD35773",
+          "baseType": "89D69E81-EA34-42EE-9FA2-93B8BD27E098"
+        },
+        {
+          "defKey": "updated_by",
+          "defName": "更新人",
+          "comment": "",
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "1C4C2239-5DA2-4656-BF2E-FBC3559F4ACD",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
+        },
+        {
+          "defKey": "updated_time",
+          "defName": "更新时间",
+          "comment": "",
+          "domain": "7CFFA0D3-6A93-4DDC-BC10-DF21211064DC",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "ADAF89A3-C471-43BE-A0DD-DC71FD11E2C7",
+          "baseType": "89D69E81-EA34-42EE-9FA2-93B8BD27E098"
+        }
+      ],
+      "correlations": [],
+      "indexes": [],
+      "type": "P"
+    },
+    {
+      "id": "40532741-B18C-4161-825F-2DDCB10C64E5",
+      "env": {
+        "base": {
+          "nameSpace": "",
+          "codeRoot": ""
+        }
+      },
+      "defKey": "DTT_SYS_ROLE",
+      "defName": "系统角色表",
+      "comment": "",
+      "properties": {
+        "partitioned by": "(date string)",
+        "row format delimited": "",
+        "fields terminated by ','": "",
+        "collection items terminated by '-'": "",
+        "map keys terminated by ':'": "",
+        "store as textfile;": ""
+      },
+      "sysProps": {
+        "nameTemplate": "{defKey}[{defName}]"
+      },
+      "notes": {},
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "extProps",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr1",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr2",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr3",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr4",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr5",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr6",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr7",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr8",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr9",
+          "freeze": false,
+          "hideInGraph": true
+        }
+      ],
+      "fields": [
+        {
+          "defKey": "id",
+          "defName": "主键",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": true,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "id": "7B6F7FF8-ADA2-4E9C-A029-5C4DDC9AFB24"
+        },
+        {
+          "defKey": "role_name",
+          "defName": "角色名称",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "9092C4E0-1A54-4859-ABBB-5B62DBC27573",
+          "id": "AE53D615-1FB4-4AFE-98C3-47FCFAFEF113"
+        },
+        {
+          "defKey": "role_desc",
+          "defName": "角色描述",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "9092C4E0-1A54-4859-ABBB-5B62DBC27573",
+          "id": "2F83E60B-E6BB-4FFC-B1AE-C7E7FE8D413F"
+        },
+        {
+          "defKey": "status",
+          "defName": "角色状态",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "0",
+          "hideInGraph": false,
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "refDict": "762B12DF-E162-404E-B997-4BB61D571C6A",
+          "extProps": {},
+          "notes": {},
+          "attr1": "",
+          "attr2": "",
+          "attr3": "",
+          "attr4": "",
+          "attr5": "",
+          "attr6": "",
+          "attr7": "",
+          "attr8": "",
+          "attr9": "",
+          "id": "161D051A-4B58-483F-A996-C1788C14C4F9",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811"
+        },
+        {
+          "defKey": "tenant_id",
+          "defName": "租户号",
+          "comment": "",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "refDict": "",
+          "uiHint": "",
+          "id": "6628B67A-A30F-43B5-8ADD-FEBC6F606CE8",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
+        },
+        {
+          "defKey": "revision",
+          "defName": "乐观锁",
+          "comment": "",
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "FA00C768-D9B4-40A0-B9C1-BE7F8A27D2D0",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811"
+        },
+        {
+          "defKey": "created_by",
+          "defName": "创建人",
+          "comment": "",
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "1DF32C72-49E8-45DA-8494-66FA0A34CD7E",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
+        },
+        {
+          "defKey": "created_time",
+          "defName": "创建时间",
+          "comment": "",
+          "domain": "7CFFA0D3-6A93-4DDC-BC10-DF21211064DC",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "1005E9D2-A09C-4A20-9F4F-56F44B9B9F9E",
+          "baseType": "89D69E81-EA34-42EE-9FA2-93B8BD27E098"
+        },
+        {
+          "defKey": "updated_by",
+          "defName": "更新人",
+          "comment": "",
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "6BFFD5B2-7D6C-4031-ADFE-3D1B0C25E4AF",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
+        },
+        {
+          "defKey": "updated_time",
+          "defName": "更新时间",
+          "comment": "",
+          "domain": "7CFFA0D3-6A93-4DDC-BC10-DF21211064DC",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "F10B9C1B-1CDE-4687-9A13-BD60123951C5",
+          "baseType": "89D69E81-EA34-42EE-9FA2-93B8BD27E098"
+        }
+      ],
+      "correlations": [],
+      "indexes": [],
+      "type": "P"
+    },
+    {
+      "id": "766A6F58-15B0-41BC-9F69-E9E539CBD57F",
+      "env": {
+        "base": {
+          "nameSpace": "",
+          "codeRoot": ""
+        }
+      },
+      "defKey": "DTT_SYS_ROLE_MENU",
+      "defName": "角色的菜单权限表",
+      "comment": "",
+      "properties": {
+        "partitioned by": "(date string)",
+        "row format delimited": "",
+        "fields terminated by ','": "",
+        "collection items terminated by '-'": "",
+        "map keys terminated by ':'": "",
+        "store as textfile;": ""
+      },
+      "sysProps": {
+        "nameTemplate": "{defKey}[{defName}]"
+      },
+      "notes": {},
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "extProps",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr1",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr2",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr3",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr4",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr5",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr6",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr7",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr8",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr9",
+          "freeze": false,
+          "hideInGraph": true
+        }
+      ],
+      "fields": [
+        {
+          "defKey": "id",
+          "defName": "主键",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": true,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "id": "B8D9EB08-4327-4BCA-86D7-7E111B21952B"
+        },
+        {
+          "defKey": "role_id",
+          "defName": "角色id",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "id": "F73433AB-4B6C-4BCE-AFD3-3B50AFDA0995"
+        },
+        {
+          "defKey": "menu_id",
+          "defName": "菜单id",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "id": "3E4F94ED-5D10-4ECC-8328-4C82C73D93D1"
+        },
+        {
+          "defKey": "tenant_id",
+          "defName": "租户号",
+          "comment": "",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "refDict": "",
+          "uiHint": "",
+          "id": "BFE90582-C34E-464C-9B34-DFDC67CB9021",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
+        },
+        {
+          "defKey": "revision",
+          "defName": "乐观锁",
+          "comment": "",
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "243BB107-B4D1-46E4-87DA-0926AF099150",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811"
+        },
+        {
+          "defKey": "created_by",
+          "defName": "创建人",
+          "comment": "",
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "9F46519F-D03C-43E9-9C17-4B7FEABE4594",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
+        },
+        {
+          "defKey": "created_time",
+          "defName": "创建时间",
+          "comment": "",
+          "domain": "7CFFA0D3-6A93-4DDC-BC10-DF21211064DC",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "900B4A2B-1A19-45FC-B4A7-A5C3DF35FD96",
+          "baseType": "89D69E81-EA34-42EE-9FA2-93B8BD27E098"
+        },
+        {
+          "defKey": "updated_by",
+          "defName": "更新人",
+          "comment": "",
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "B40A28D3-0119-4043-9845-B44AD9516C28",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
+        },
+        {
+          "defKey": "updated_time",
+          "defName": "更新时间",
+          "comment": "",
+          "domain": "7CFFA0D3-6A93-4DDC-BC10-DF21211064DC",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "FE099908-70F4-441F-B3E5-3BEA1960B4D3",
+          "baseType": "89D69E81-EA34-42EE-9FA2-93B8BD27E098"
+        }
+      ],
+      "correlations": [],
+      "indexes": [],
+      "type": "P"
+    },
+    {
+      "id": "6EC0E345-8689-419E-82A8-FCE48FE02D78",
+      "env": {
+        "base": {
+          "nameSpace": "",
+          "codeRoot": ""
+        }
+      },
+      "defKey": "DTT_SYS_USER_ROLE",
+      "defName": "用户拥有的角色",
+      "comment": "",
+      "properties": {
+        "partitioned by": "(date string)",
+        "row format delimited": "",
+        "fields terminated by ','": "",
+        "collection items terminated by '-'": "",
+        "map keys terminated by ':'": "",
+        "store as textfile;": ""
+      },
+      "sysProps": {
+        "nameTemplate": "{defKey}[{defName}]"
+      },
+      "notes": {},
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "extProps",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr1",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr2",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr3",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr4",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr5",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr6",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr7",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr8",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr9",
+          "freeze": false,
+          "hideInGraph": true
+        }
+      ],
+      "fields": [
+        {
+          "defKey": "id",
+          "defName": "主键",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": true,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "id": "06B99AA5-9D7D-4F1A-9D8C-C8177C83210D"
+        },
+        {
+          "defKey": "user_id",
+          "defName": "用户id",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "id": "8A76F912-B3C2-4CB0-829D-E9B656B4DA07"
+        },
+        {
+          "defKey": "role_id",
+          "defName": "角色id",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "id": "A3930821-4D5B-4972-B671-04ABA60CA289"
+        },
+        {
+          "defKey": "tenant_id",
+          "defName": "租户号",
+          "comment": "",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "refDict": "",
+          "uiHint": "",
+          "id": "39B6E044-3482-4B98-976D-0A2463A20C89",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
+        },
+        {
+          "defKey": "revision",
+          "defName": "乐观锁",
+          "comment": "",
+          "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "74EB42A5-E119-44F3-990C-A20335BDEE67",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811"
+        },
+        {
+          "defKey": "created_by",
+          "defName": "创建人",
+          "comment": "",
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "C271AFDD-3E93-4C38-B4A4-70D791DCEBD7",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
+        },
+        {
+          "defKey": "created_time",
+          "defName": "创建时间",
+          "comment": "",
+          "domain": "7CFFA0D3-6A93-4DDC-BC10-DF21211064DC",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "BB5F955E-B027-4D0D-9AA5-8B57C0ED705C",
+          "baseType": "89D69E81-EA34-42EE-9FA2-93B8BD27E098"
+        },
+        {
+          "defKey": "updated_by",
+          "defName": "更新人",
+          "comment": "",
+          "domain": "16120F75-6AA7-4483-868D-F07F511BB081",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "8F380E24-ABD6-45EE-B17A-FBE2223C289C",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64"
+        },
+        {
+          "defKey": "updated_time",
+          "defName": "更新时间",
+          "comment": "",
+          "domain": "7CFFA0D3-6A93-4DDC-BC10-DF21211064DC",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "1A26E37F-C2E5-4CD3-B4AD-8D287E383C68",
+          "baseType": "89D69E81-EA34-42EE-9FA2-93B8BD27E098"
+        }
+      ],
+      "correlations": [],
+      "indexes": [],
+      "type": "P"
     }
   ],
   "views": [],
-  "dicts": [],
+  "dicts": [
+    {
+      "defKey": "BLOON",
+      "defName": "逻辑值",
+      "sort": "",
+      "intro": "",
+      "id": "6113CB56-1437-4482-B6DE-FA35CCB5ACD1",
+      "items": [
+        {
+          "defKey": "1",
+          "defName": "是",
+          "sort": "",
+          "parentKey": "",
+          "intro": "",
+          "enabled": true,
+          "attr1": "",
+          "attr2": "",
+          "attr3": "",
+          "id": "EB88E036-32AA-4A54-AFFC-D2C23CC5253E"
+        },
+        {
+          "defKey": "0",
+          "defName": "否",
+          "sort": "",
+          "parentKey": "",
+          "intro": "",
+          "enabled": true,
+          "attr1": "",
+          "attr2": "",
+          "attr3": "",
+          "id": "FD53E1A4-3C22-486F-9703-434120C8D92B"
+        }
+      ]
+    },
+    {
+      "defKey": "STATUS",
+      "defName": "状态",
+      "sort": "",
+      "intro": "",
+      "id": "762B12DF-E162-404E-B997-4BB61D571C6A",
+      "items": [
+        {
+          "defKey": "0",
+          "defName": "正常",
+          "sort": "1",
+          "parentKey": "",
+          "intro": "",
+          "enabled": true,
+          "attr1": "",
+          "attr2": "",
+          "attr3": "",
+          "id": "129BF615-A119-443A-9F3D-C92338AA3C05"
+        },
+        {
+          "defKey": "1",
+          "defName": "停用",
+          "sort": "2",
+          "parentKey": "",
+          "intro": "",
+          "enabled": true,
+          "attr1": "",
+          "attr2": "",
+          "attr3": "",
+          "id": "D336B87E-B85B-4558-BD14-CF822D22045C"
+        },
+        {
+          "defKey": "2",
+          "defName": "删除",
+          "sort": "3",
+          "parentKey": "",
+          "intro": "",
+          "enabled": true,
+          "attr1": "",
+          "attr2": "",
+          "attr3": "",
+          "id": "31694882-3594-487F-90B9-DD7D6D65B6A0"
+        }
+      ]
+    },
+    {
+      "defKey": "MENU_TYPE",
+      "defName": "菜单类型",
+      "sort": "",
+      "intro": "",
+      "id": "1916ED1D-4CED-47B0-A8AD-BD339F43B60D",
+      "items": [
+        {
+          "defKey": "0",
+          "defName": "菜单",
+          "sort": "",
+          "parentKey": "",
+          "intro": "",
+          "enabled": true,
+          "attr1": "",
+          "attr2": "",
+          "attr3": "",
+          "id": "4E11BE36-365A-458C-9740-4E34C8FC6A8A"
+        },
+        {
+          "defKey": "1",
+          "defName": "按钮",
+          "sort": "",
+          "parentKey": "",
+          "intro": "",
+          "enabled": true,
+          "attr1": "",
+          "attr2": "",
+          "attr3": "",
+          "id": "A430EFFA-77B2-4E7A-A588-404CDC57E86E"
+        }
+      ]
+    }
+  ],
   "viewGroups": [
     {
       "defKey": "System",
       "defName": "系统",
       "refEntities": [
-        "0D15D465-8715-4B54-ADFD-B802D297B140"
+        "F2FF27CB-E6BE-4820-B640-080FE38AAB28",
+        "EF044E3B-F2B6-4291-8899-CF2B5567503E",
+        "40532741-B18C-4161-825F-2DDCB10C64E5",
+        "766A6F58-15B0-41BC-9F69-E9E539CBD57F",
+        "6EC0E345-8689-419E-82A8-FCE48FE02D78"
       ],
       "refViews": [],
-      "refDiagrams": [],
-      "refDicts": [],
+      "refDiagrams": [
+        "B9F2B4A9-AD0C-499A-B4DC-1EAE18827300"
+      ],
+      "refDicts": [
+        "6113CB56-1437-4482-B6DE-FA35CCB5ACD1",
+        "762B12DF-E162-404E-B997-4BB61D571C6A",
+        "1916ED1D-4CED-47B0-A8AD-BD339F43B60D"
+      ],
       "id": "D9AD149C-B1AD-4664-9851-E79CF63D91F9"
     }
   ],
@@ -1474,7 +3574,7 @@
     {
       "defKey": "YesNo",
       "defName": "是否",
-      "applyFor": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+      "applyFor": "1D764C4A-6F9F-421E-B11A-6F3E23B51811",
       "len": "1",
       "scale": "",
       "uiHint": "",
@@ -1499,9 +3599,220 @@
       "id": "3E948CEC-3070-472C-AF92-F3CA11EC9D15"
     }
   ],
-  "diagrams": [],
+  "diagrams": [
+    {
+      "defKey": "System",
+      "defName": "系统关系",
+      "relationType": "field",
+      "canvasData": {
+        "cells": [
+          {
+            "id": "9ccbebf7-a56e-460d-9456-eeb42e2707d7",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "5013a4ef-829d-4746-a8b2-89c6a3f695a6",
+              "port": "F73433AB-4B6C-4BCE-AFD3-3B50AFDA0995%in"
+            },
+            "target": {
+              "cell": "7b7255d2-cd60-4a28-beb7-b7189bd4767a",
+              "port": "7B6F7FF8-ADA2-4E9C-A029-5C4DDC9AFB24%out"
+            },
+            "relation": "1:n",
+            "fillColor": "#ACDAFC",
+            "router": {
+              "name": "manhattan"
+            },
+            "attrs": {
+              "line": {
+                "strokeDasharray": ""
+              }
+            }
+          },
+          {
+            "id": "4f06d8a7-7a9e-4818-b602-3efd1383f884",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "5013a4ef-829d-4746-a8b2-89c6a3f695a6",
+              "port": "3E4F94ED-5D10-4ECC-8328-4C82C73D93D1%out"
+            },
+            "target": {
+              "cell": "65a1b43a-5dc4-4cbd-9954-ab2eab761042",
+              "port": "224AA8D2-EE4C-4109-A627-596F8042358E%out"
+            },
+            "relation": "1:n",
+            "fillColor": "#ACDAFC",
+            "router": {
+              "name": "manhattan"
+            },
+            "attrs": {
+              "line": {
+                "strokeDasharray": ""
+              }
+            }
+          },
+          {
+            "id": "018784dd-ccee-48f9-b827-07d6a9ab70be",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "65a1b43a-5dc4-4cbd-9954-ab2eab761042",
+              "port": "47BC8FCD-A433-4672-A54A-5C2E17C74D9C%in"
+            },
+            "target": {
+              "cell": "65a1b43a-5dc4-4cbd-9954-ab2eab761042",
+              "port": "224AA8D2-EE4C-4109-A627-596F8042358E%in"
+            },
+            "relation": "1:n",
+            "fillColor": "#ACDAFC",
+            "parent": "65a1b43a-5dc4-4cbd-9954-ab2eab761042",
+            "router": {
+              "name": "manhattan"
+            },
+            "attrs": {
+              "line": {
+                "strokeDasharray": ""
+              }
+            }
+          },
+          {
+            "id": "9d9d0f2f-1401-4144-9c23-146759dc04a6",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "7f777838-fcd4-47a9-8c4c-a12cc2196377",
+              "port": "8A76F912-B3C2-4CB0-829D-E9B656B4DA07%in"
+            },
+            "target": {
+              "cell": "c3bbedca-f775-44a2-951c-4f0d9fcf360e",
+              "port": "B3C4AA01-5919-4D39-8BD4-125218773532%out"
+            },
+            "relation": "1:n",
+            "fillColor": "#ACDAFC",
+            "router": {
+              "name": "manhattan"
+            },
+            "attrs": {
+              "line": {
+                "strokeDasharray": ""
+              }
+            }
+          },
+          {
+            "id": "4e3241cc-fb23-41cd-a352-4f30f609b6ef",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "7f777838-fcd4-47a9-8c4c-a12cc2196377",
+              "port": "8A76F912-B3C2-4CB0-829D-E9B656B4DA07%out"
+            },
+            "target": {
+              "cell": "7b7255d2-cd60-4a28-beb7-b7189bd4767a",
+              "port": "7B6F7FF8-ADA2-4E9C-A029-5C4DDC9AFB24%in"
+            },
+            "relation": "1:n",
+            "fillColor": "#ACDAFC",
+            "router": {
+              "name": "manhattan"
+            },
+            "attrs": {
+              "line": {
+                "strokeDasharray": ""
+              }
+            }
+          },
+          {
+            "id": "7f777838-fcd4-47a9-8c4c-a12cc2196377",
+            "shape": "table",
+            "position": {
+              "x": -160,
+              "y": 200
+            },
+            "count": 0,
+            "originKey": "6EC0E345-8689-419E-82A8-FCE48FE02D78",
+            "type": "P",
+            "size": {
+              "width": 364,
+              "height": 100
+            }
+          },
+          {
+            "id": "7b7255d2-cd60-4a28-beb7-b7189bd4767a",
+            "shape": "table",
+            "position": {
+              "x": 100,
+              "y": -200
+            },
+            "count": 0,
+            "originKey": "40532741-B18C-4161-825F-2DDCB10C64E5",
+            "type": "P",
+            "size": {
+              "width": 327,
+              "height": 123
+            }
+          },
+          {
+            "id": "65a1b43a-5dc4-4cbd-9954-ab2eab761042",
+            "shape": "table",
+            "position": {
+              "x": 567,
+              "y": -240
+            },
+            "count": 0,
+            "originKey": "EF044E3B-F2B6-4291-8899-CF2B5567503E",
+            "type": "P",
+            "size": {
+              "width": 351,
+              "height": 330
+            }
+          },
+          {
+            "id": "c3bbedca-f775-44a2-951c-4f0d9fcf360e",
+            "shape": "table",
+            "position": {
+              "x": -650,
+              "y": -250
+            },
+            "count": 0,
+            "originKey": "F2FF27CB-E6BE-4820-B640-080FE38AAB28",
+            "type": "P",
+            "size": {
+              "width": 389,
+              "height": 284
+            }
+          },
+          {
+            "id": "5013a4ef-829d-4746-a8b2-89c6a3f695a6",
+            "shape": "table",
+            "position": {
+              "x": 320,
+              "y": 220
+            },
+            "count": 0,
+            "originKey": "766A6F58-15B0-41BC-9F69-E9E539CBD57F",
+            "type": "P",
+            "size": {
+              "width": 391,
+              "height": 100
+            },
+            "autoSize": true
+          }
+        ]
+      },
+      "id": "B9F2B4A9-AD0C-499A-B4DC-1EAE18827300",
+      "comment": ""
+    }
+  ],
   "standardFields": [],
-  "dbConn": [],
+  "dbConn": [
+    {
+      "defKey": "0F6D7732-C96F-4971-A8DA-83AD0B2D91D4",
+      "defName": "VMware数据库服务器",
+      "type": "DFBEC1DD-AA84-456E-BBF3-C95DD0DB2022",
+      "properties": {
+        "driver_class_name": "org.postgresql.Driver",
+        "url": "jdbc:postgresql://172.17.17.237:15432/DTT",
+        "password": "abc123",
+        "username": "postgres"
+      }
+    }
+  ],
   "logicEntities": [],
   "namingRules": [
     {

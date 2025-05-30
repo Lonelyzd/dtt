@@ -382,6 +382,26 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: '/system',
+    component: Layout,
+    name: 'system',
+    meta: { title: '系统设置', icon: 'el-icon-setting' },
+    children: [
+      {
+        path: '/system/datasource',
+        component: () => import('@/views/system/datasource'),
+        name: 'datasource',
+        meta: { title: '数据源', icon: 'clipboard' }
+      },
+      {
+        path: '/system/datasource2',
+        component: () => import('@/views/system/datasource'),
+        name: 'datasource2',
+        meta: { title: 'bbb', icon: 'clipboard' ,roles: ['admin1','editor1']}
+      }
+    ]
+  },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

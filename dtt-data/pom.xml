@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>cn.iceblue</groupId>
-            <artifactId>dtt-api</artifactId>
+            <artifactId>dtt-core</artifactId>
         </dependency>
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
