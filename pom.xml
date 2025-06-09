@@ -46,6 +46,7 @@
         <hutool.version>5.8.37</hutool.version>
         <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
         <swagger.version>1.6.16</swagger.version>
+        <satoken.starter.version>1.34.0</satoken.starter.version>
     </properties>
     <dependencies>
         <dependency>
@@ -142,7 +143,12 @@
                 <artifactId>swagger-annotations</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
-
+            <!-- Sa-Token 权限认证，在线文档：https://sa-token.cc -->
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-spring-boot-starter</artifactId>
+                <version>${satoken.starter.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

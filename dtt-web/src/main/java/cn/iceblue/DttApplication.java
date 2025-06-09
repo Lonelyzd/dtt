@@ -1,4 +1,4 @@
-package cn.iceblue.dtt;
+package cn.iceblue;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -6,3 +6,5 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: abc123
+mybatis-plus:
+  type-aliases-package: cn.iceblue.core.pojo.entity.*

@@ -25,6 +25,10 @@
             <groupId>cn.iceblue</groupId>
             <artifactId>dtt-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.iceblue</groupId>
+            <artifactId>dtt-data</artifactId>
+        </dependency>
     </dependencies>
 
 
