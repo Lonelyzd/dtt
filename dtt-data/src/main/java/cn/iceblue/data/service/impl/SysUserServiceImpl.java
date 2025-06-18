@@ -1,20 +1,41 @@
 package cn.iceblue.data.service.impl;
 
+import cn.iceblue.core.domain.enums.ResponseTemplate;
+import cn.iceblue.core.domain.enums.dict.UserStatusDict;
+import cn.iceblue.core.domain.po.LoginVo;
+import cn.iceblue.core.domain.vo.UserInfoVo;
+import cn.iceblue.core.exception.DttRuntimeException;
+import cn.iceblue.core.pojo.entity.SysRoleEntity;
 import cn.iceblue.core.pojo.entity.SysUserEntity;
+import cn.iceblue.core.util.Assert;
+import cn.iceblue.core.util.RsaEncryptUtils;
 import cn.iceblue.data.dao.SysUserDao;
+import cn.iceblue.data.dao.SysUserRoleDao;
 import cn.iceblue.data.service.SysUserService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.jasypt.util.text.TextEncryptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 
+@Slf4j
 @Service("sysUserService")
 public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> implements SysUserService {
+    @Autowired
+    private SysUserRoleDao sysUserRoleDao;
+
+    @Autowired
+    private TextEncryptor textEncryptor;
 
     /**
      * 分页查询
@@ -90,5 +111,61 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
         //3. 返回结果
         return pagin;
     }
+
+    /**
+     * 用户登录
+     *
+     * @param sysUser :
+     * @return SysUserEntity
+     * @author IceBlue
+     * @date 2025/6/10 下午4:06
+     **/
+    @Override
+    public SysUserEntity login(LoginVo sysUser) {
+        SysUserEntity entity = this.getOne(Wrappers
+                        .<SysUserEntity>lambdaQuery()
+                        .eq(SysUserEntity::getUserCode, sysUser.getUsername())
+                        .ne(SysUserEntity::getStatus, UserStatusDict.DELETED.getCode())
+                , false
+        );
+
+        Assert.notNull(entity, ResponseTemplate.USER_NON_EXISTENT);
+
+        try {
+            boolean equals = RsaEncryptUtils.decrypt(sysUser.getPassword()).equals(textEncryptor.decrypt(entity.getUserPassword()));
+            Assert.isTrue(equals, ResponseTemplate.DECODE_ERROR);
+        } catch (Exception e) {
+            log.error("解密失败,源字符串:{}", sysUser.getPassword());
+            throw new DttRuntimeException(e, ResponseTemplate.DECODE_ERROR);
+        }
+        Assert.isTrue(!UserStatusDict.DEACTIVATE.getCode().equals(entity.getStatus()), ResponseTemplate.USER_LOCKED);
+        return entity;
+    }
+
+    /**
+     * 获取用户信息
+     *
+     * @param userId :
+     * @return UserInfoVo
+     * @author IceBlue
+     * @date 2025/6/18 下午3:04
+     **/
+    @Override
+    public UserInfoVo info(String userId) {
+        UserInfoVo vo = new UserInfoVo();
+        SysUserEntity user = getById(userId);
+        vo.setAvatar(user.getAvatar());
+        vo.setName(user.getUserName());
+        vo.setIntroduction(user.getRemark());
+
+        List<SysRoleEntity> sysRoleEntities = sysUserRoleDao.selectRoleByUserId(userId);
+        List<String> collect = sysRoleEntities.stream()
+                .map(SysRoleEntity::getRoleName)
+                .collect(Collectors.toList());
+
+        vo.setRoles(collect);
+        return vo;
+    }
+
 
 }

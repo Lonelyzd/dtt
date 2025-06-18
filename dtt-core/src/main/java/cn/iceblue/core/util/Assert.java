@@ -1,11 +1,16 @@
 package cn.iceblue.core.util;
 
+import cn.iceblue.core.domain.enums.ResponseTemplate;
+import cn.iceblue.core.domain.enums.ResponseStatus;
+import cn.iceblue.core.exception.DttRuntimeException;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public abstract class Assert {
@@ -72,16 +77,27 @@ public abstract class Assert {
         isNull(object, "[Assertion failed] - the object argument must be null");
     }
 
-    public static void notNull(Object object, String message) {
-        if (object == null) {
-            throw new IllegalArgumentException(message);
-        }
-    }
 
     public static void notNull(Object object, Supplier<String> messageSupplier) {
         if (object == null) {
             throw new IllegalArgumentException(nullSafeGet(messageSupplier));
         }
+    }
+
+    public static void notNull(Object o, ResponseTemplate fmt, Object... params) {
+        notNull(o, fmt.getCode(), fmt.getText(), params);
+    }
+
+    /**
+     * @param expression: 表达式
+     * @param fmt:        消息模版{}
+     * @param params:     参数
+     * @return void
+     * @author IceBlue
+     * @date 2023/3/31 11:12
+     **/
+    public static void isTrue(boolean expression, ResponseTemplate fmt, Object... params) {
+        isTrue(expression, fmt.getCode(), fmt.getText(), params);
     }
 
     /**
@@ -154,11 +170,6 @@ public abstract class Assert {
         });
     }
 
-    public static void notEmpty(Object[] array, String message) {
-        if (ObjectUtils.isEmpty(array)) {
-            throw new IllegalArgumentException(message);
-        }
-    }
 
     public static void notEmpty(Object[] array, Supplier<String> messageSupplier) {
         if (ObjectUtils.isEmpty(array)) {
@@ -212,11 +223,6 @@ public abstract class Assert {
         noNullElements(array, "[Assertion failed] - this array must not contain any null elements");
     }
 
-    public static void notEmpty(Collection<?> collection, String message) {
-        if (CollectionUtils.isEmpty(collection)) {
-            throw new IllegalArgumentException(message);
-        }
-    }
 
     public static void notEmpty(Collection<?> collection, Supplier<String> messageSupplier) {
         if (CollectionUtils.isEmpty(collection)) {
@@ -258,12 +264,6 @@ public abstract class Assert {
             }
         }
 
-    }
-
-    public static void notEmpty(Map<?, ?> map, String message) {
-        if (CollectionUtils.isEmpty(map)) {
-            throw new IllegalArgumentException(message);
-        }
     }
 
     public static void notEmpty(Map<?, ?> map, Supplier<String> messageSupplier) {
@@ -370,5 +370,124 @@ public abstract class Assert {
 
     private static String nullSafeGet(Supplier<String> messageSupplier) {
         return messageSupplier != null ? (String) messageSupplier.get() : null;
+    }
+
+    public static <T> void isTrue(Predicate<T> predicate, T t, String fmt, Object... params) {
+        isTrue(Objects.requireNonNull(predicate).test(t), fmt, params);
+    }
+
+    /**
+     * 判断是否符合条件
+     *
+     * @param expression 表达式
+     * @param fmt        信息格式, 比如: Hi, {}.
+     * @param params     参数
+     */
+    public static void isTrue(boolean expression, String fmt, Object... params) {
+        if (!expression) {
+            throw new DttRuntimeException(StrFormatter.format(fmt, params));
+        }
+    }
+
+    /**
+     * @param expression: 表达式
+     * @param code:       错误状态码
+     * @param fmt:        信息格式, 比如: Hi, {}.
+     * @param params:     参数
+     * @return void
+     * @author IceBlue
+     * @date 2023/3/13 14:04
+     **/
+    public static void isTrue(boolean expression, Integer code, String fmt, Object... params) {
+        if (!expression) {
+            throw new DttRuntimeException(code, fmt, params);
+        }
+    }
+
+
+    /**
+     * @param expression: 表达式
+     * @param code:       错误状态码枚举
+     * @param fmt:        消息模版{}
+     * @param params:     参数
+     * @return void
+     * @author IceBlue
+     * @date 2023/3/31 11:12
+     **/
+    public static void isTrue(boolean expression, ResponseStatus code, String fmt, Object... params) {
+        if (!expression) {
+            throw new DttRuntimeException(code.getCode(), fmt, params);
+        }
+    }
+
+
+
+    public static void notNull(Object o, Integer code, String fmt, Object... params) {
+        isTrue(o != null, code, fmt, params);
+    }
+
+    public static void notNull(Object o, ResponseStatus code, String fmt, Object... params) {
+        notNull(o, code.getCode(), fmt, params);
+    }
+
+
+
+    public static void notNull(Object o, String name) {
+        isTrue(o != null, "{}不能为NULL", name);
+    }
+
+
+    /**
+     * @param cs:     要校验的字符串
+     * @param code:   错误状态码
+     * @param fmt:    错误消息模版
+     * @param params: 消息模版参数
+     * @return void
+     * @author IceBlue
+     * @date 2024/5/20 16:04
+     **/
+    public static void notBlank(CharSequence cs, Integer code, String fmt, Object... params) {
+        if (cs == null || cs.length() == 0) {
+            throw new DttRuntimeException(code, fmt, params);
+        }
+    }
+
+    public static void notBlank(CharSequence cs, ResponseStatus code, String fmt, Object... params) {
+        notBlank(cs, code.getCode(), fmt, params);
+    }
+
+
+    /**
+     * @param cs:     要校验的字符串
+     * @param fmt:    错误消息模版
+     * @param params: 消息模版参数
+     * @return void
+     * @author IceBlue
+     * @date 2024/5/20 16:03
+     **/
+    public static void notBlank(CharSequence cs, String fmt, Object... params) {
+        notBlank(cs, ResponseStatus.FAILED.getCode(), fmt, params);
+    }
+
+    public static void notBlank(CharSequence cs) {
+        notBlank(cs, "字符不可为空", (Object) null);
+    }
+
+
+    public static void notEmpty(CharSequence cs, String name) {
+        isTrue(cs != null && cs.length() > 0, "{}不能为空", name);
+    }
+
+
+    public static void notEmpty(Collection<?> collection, String name) {
+        isTrue(collection != null && !collection.isEmpty(), "{}不能为空", name);
+    }
+
+    public static void notEmpty(Map<?, ?> map, String name) {
+        isTrue(map != null && !map.isEmpty(), "{}不能为空", name);
+    }
+
+    public static <T> void notEmpty(T[] array, String name) {
+        isTrue(array != null && array.length > 0 && array[0] != null, "{}不能为空", name);
     }
 }

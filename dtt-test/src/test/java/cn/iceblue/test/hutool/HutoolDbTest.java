@@ -44,6 +44,8 @@ public class HutoolDbTest {
         List<Entity> autobuildUpdatedatainfo = Db.use(dataSource).query("SELECT  * FROm TSS_CONFIG_SJJCDAYZ");
 
         System.out.println("=====");
+
+
     }
 
 

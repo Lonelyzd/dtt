@@ -1,6 +1,8 @@
-package cn.iceblue.config;
+package cn.iceblue.web.config;
 
 import cn.dev33.satoken.stp.StpInterface;
+import cn.iceblue.data.service.SysUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,8 +14,8 @@ import java.util.List;
 @Component    // 保证此类被 SpringBoot 扫描，完成 Sa-Token 的自定义权限验证扩展
 public class StpInterfaceImpl implements StpInterface {
 
-//	@Autowired
-//	UserService userService;
+	@Autowired
+	SysUserService sysUserService;
 
 
 	/**
@@ -29,6 +31,7 @@ public class StpInterfaceImpl implements StpInterface {
 				.map(RacMenuTreeEntity::getHref)
 				.collect(Collectors.toList());
 		}*/
+
 		return null;
 	}
 

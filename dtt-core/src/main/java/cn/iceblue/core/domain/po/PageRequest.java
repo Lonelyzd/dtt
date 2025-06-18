@@ -1,4 +1,4 @@
-package cn.iceblue.api.vo;
+package cn.iceblue.core.domain.po;
 
 import lombok.Data;
 

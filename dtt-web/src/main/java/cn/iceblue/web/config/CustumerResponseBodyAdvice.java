@@ -1,6 +1,6 @@
-package cn.iceblue.config;
+package cn.iceblue.web.config;
 
-import cn.iceblue.api.vo.R;
+import cn.iceblue.core.domain.vo.R;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.http.MediaType;

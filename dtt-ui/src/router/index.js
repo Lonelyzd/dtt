@@ -398,7 +398,7 @@ export const asyncRoutes = [
         path: '/system/datasource2',
         component: () => import('@/views/system/datasource'),
         name: 'datasource2',
-        meta: { title: 'bbb', icon: 'clipboard' ,roles: ['admin1','editor1']}
+        meta: { title: 'bbb', icon: 'clipboard', roles: ['admin1','editor1']}
       }
     ]
   },

@@ -3,7 +3,7 @@
 
 <mapper namespace="cn.iceblue.data.dao.SysUserRoleDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="cn.iceblue.core.pojo.entity.SysUserRoleEntity" id="sysUserRoleMap">
         <result property="id" column="id"/>
         <result property="userId" column="user_id"/>
@@ -17,8 +17,15 @@
     </resultMap>
 
     <select id="selectByPage" resultType="cn.iceblue.core.pojo.entity.SysUserRoleEntity">
-        select * from dtt_sys_user_role ${ew.customSqlSegment}
+        select *
+        from dtt_sys_user_role ${ew.customSqlSegment}
     </select>
 
+    <select id="selectRoleByUserId" parameterType="string" resultType="cn.iceblue.core.pojo.entity.SysRoleEntity">
+        SELECT b.*
+        FROM dtt_sys_user_role a
+                 INNER JOIN dtt_sys_role b on a.role_id = b.id
+        WHERE a.user_id = #{userId}
+    </select>
 
 </mapper>

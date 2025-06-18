@@ -1,8 +1,8 @@
-package cn.iceblue.api.controller;
+package cn.iceblue.api.controller.sys;
 
-import cn.iceblue.api.vo.PageRequest;
-import cn.iceblue.api.vo.PageVO;
-import cn.iceblue.api.vo.R;
+import cn.iceblue.core.domain.po.PageRequest;
+import cn.iceblue.core.domain.vo.PageVO;
+import cn.iceblue.core.domain.vo.R;
 import cn.iceblue.core.pojo.entity.SysUserRoleEntity;
 import cn.iceblue.data.service.SysUserRoleService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @email 
  * @date 2025-06-04 14:11:43
  */
-@Api(tags = "用户拥有的角色对象功能接口")
+@Api(tags = "系统/用户拥有的角色对象功能接口")
 @RestController
 @RequestMapping("sys/userrole")
 public class SysUserRoleController {
@@ -46,7 +46,7 @@ public class SysUserRoleController {
         /*把Mybatis的分页对象做封装转换，MP的分页对象上有一些SQL敏感信息，还是通过spring的分页模型来封装数据吧*/
         Page<SysUserRoleEntity> pageResult = sysUserRoleService.pagingQuery(sysUserRoleEntity, current,size);
         //3. 分页结果组装
-        return R.ok(new PageVO<>(pageResult));
+        return R.ok(new PageVO<>(current, size, pageResult.getTotal(), pageResult.getRecords()));
     }
 
 
