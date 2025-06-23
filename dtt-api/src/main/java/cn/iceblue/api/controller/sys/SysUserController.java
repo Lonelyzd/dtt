@@ -140,4 +140,11 @@ public class SysUserController {
         UserInfoVo vo = sysUserService.info(userId);
         return R.ok(vo);
     }
+
+    @ApiOperation("注销登录")
+    @PostMapping("/logout")
+    public R<?> logout() {
+        StpUtil.logout();
+        return R.ok();
+    }
 }

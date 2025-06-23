@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -96,6 +97,52 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> i
         pagin.setRecords(selectResult.getRecords());
         //3. 返回结果
         return pagin;
+    }
+
+    /**
+     * 根据条件查询所有菜单
+     *
+     * @param sysMenu :
+     * @return List<SysMenuEntity>
+     * @author IceBlue
+     * @date 2025/6/20 下午1:17
+     **/
+    @Override
+    public List<SysMenuEntity> list(SysMenuEntity sysMenu) {
+        //1. 构建动态查询条件
+        LambdaQueryWrapper<SysMenuEntity> queryWrapper = new LambdaQueryWrapper<>();
+
+        if (StringUtils.isNotBlank(sysMenu.getParentId())) {
+            queryWrapper.eq(SysMenuEntity::getParentId, sysMenu.getParentId());
+        }
+        if (!Objects.isNull(sysMenu.getOrderNum())) {
+            queryWrapper.eq(SysMenuEntity::getOrderNum, sysMenu.getOrderNum());
+        }
+        if (!Objects.isNull(sysMenu.getFrameFlag())) {
+            queryWrapper.eq(SysMenuEntity::getFrameFlag, sysMenu.getFrameFlag());
+        }
+        if (!Objects.isNull(sysMenu.getIsCache())) {
+            queryWrapper.eq(SysMenuEntity::getIsCache, sysMenu.getIsCache());
+        }
+        if (!Objects.isNull(sysMenu.getMenuType())) {
+            queryWrapper.eq(SysMenuEntity::getMenuType, sysMenu.getMenuType());
+        }
+        if (!Objects.isNull(sysMenu.getStatus())) {
+            queryWrapper.eq(SysMenuEntity::getStatus, sysMenu.getStatus());
+        }
+        if (StringUtils.isNotBlank(sysMenu.getPerms())) {
+            queryWrapper.eq(SysMenuEntity::getPerms, sysMenu.getPerms());
+        }
+        if (!Objects.isNull(sysMenu.getReadOnly())) {
+            queryWrapper.eq(SysMenuEntity::getReadOnly, sysMenu.getReadOnly());
+        }
+        if (StringUtils.isNotBlank(sysMenu.getTenantId())) {
+            queryWrapper.eq(SysMenuEntity::getTenantId, sysMenu.getTenantId());
+        }
+        if (!Objects.isNull(sysMenu.getRevision())) {
+            queryWrapper.eq(SysMenuEntity::getRevision, sysMenu.getRevision());
+        }
+        return this.baseMapper.selectList(queryWrapper);
     }
 
 }

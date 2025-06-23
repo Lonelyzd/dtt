@@ -27,6 +27,12 @@ public class SysMenuEntity  extends  BaseEntity implements Serializable {
 	 */
 	@ApiModelProperty(name = "menuName",notes = "菜单名称")
 	private String menuName;
+
+	/**
+	 * 菜单显示名称
+	 */
+	@ApiModelProperty(name = "menuTitle",notes = "菜单标题")
+	private String menuTitle;
 	/**
 	 * 上级菜单id
 	 */
@@ -45,7 +51,7 @@ public class SysMenuEntity  extends  BaseEntity implements Serializable {
 	/**
 	 * 1是 0否
 	 */
-	@ApiModelProperty(name = "frameFlag",notes = "1是 0否")
+	@ApiModelProperty(name = "frameFlag",notes = "是否为外链")
 	private Integer frameFlag;
 	/**
 	 * 是否缓存

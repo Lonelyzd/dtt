@@ -11,6 +11,7 @@ import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
+import { getMenuList } from '@/api/sys/menu'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -398,7 +399,7 @@ export const asyncRoutes = [
         path: '/system/datasource2',
         component: () => import('@/views/system/datasource'),
         name: 'datasource2',
-        meta: { title: 'bbb', icon: 'clipboard', roles: ['admin1','editor1']}
+        meta: { title: 'bbb', icon: 'clipboard', roles: ['admin1', 'editor1'] }
       }
     ]
   },
@@ -418,6 +419,10 @@ const router = createRouter()
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
   const newRouter = createRouter()
+
+  getMenuList({status:0}).then(repsonse=>{
+
+  })
   router.matcher = newRouter.matcher // reset router
 }
 

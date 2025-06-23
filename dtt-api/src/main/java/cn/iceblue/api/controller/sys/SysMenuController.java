@@ -11,6 +11,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * 系统菜单表
@@ -98,5 +100,13 @@ public class SysMenuController {
     public R<Boolean> deleteById(@PathVariable("id") String id) {
         return R.ok(sysMenuService.removeById(id));
     }
+
+    @ApiOperation("根据条件查询所有菜单")
+    @GetMapping("/list")
+    public R<List<SysMenuEntity>> list(SysMenuEntity sysMenuEntity) {
+        return R.ok(sysMenuService.list(sysMenuEntity));
+    }
+
+
 
 }

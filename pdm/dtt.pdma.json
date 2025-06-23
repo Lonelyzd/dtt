@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "4.9.4",
   "createdTime": "2025-5-9 13:32:54",
-  "updatedTime": "2025-5-30 17:01:53",
+  "updatedTime": "2025-6-20 15:03:01",
   "dbConns": [],
   "profile": {
     "default": {
@@ -1917,6 +1917,24 @@
           "id": "A34850FA-6B95-40B2-92F7-83157933CC1A"
         },
         {
+          "defKey": "menu_title",
+          "defName": "菜单标题",
+          "comment": "菜单显示名称",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "FC9790A7-36B8-4A48-8F9A-BC1042BCFE64",
+          "extProps": {},
+          "domain": "9092C4E0-1A54-4859-ABBB-5B62DBC27573",
+          "id": "41290358-493A-4F98-A2C4-7DFB4B0B4CF8"
+        },
+        {
           "defKey": "parent_id",
           "defName": "上级菜单id",
           "comment": "",
@@ -2036,7 +2054,7 @@
           "autoIncrement": false,
           "defaultValue": "",
           "hideInGraph": false,
-          "refDict": "6113CB56-1437-4482-B6DE-FA35CCB5ACD1",
+          "refDict": "762B12DF-E162-404E-B997-4BB61D571C6A",
           "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811",
           "extProps": {},
           "domain": "6BC8F04B-6CFA-4995-98D3-318F5CDD774E",

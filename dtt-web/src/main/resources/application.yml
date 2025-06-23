@@ -10,6 +10,8 @@ spring:
     password: abc123
 mybatis-plus:
   type-aliases-package: cn.iceblue.core.pojo.entity.*
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 jasypt:
   encryptor:
     password: aa
