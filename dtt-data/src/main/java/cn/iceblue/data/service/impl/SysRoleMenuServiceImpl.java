@@ -1,5 +1,6 @@
 package cn.iceblue.data.service.impl;
 
+import cn.iceblue.core.pojo.entity.SysMenuEntity;
 import cn.iceblue.core.pojo.entity.SysRoleMenuEntity;
 import cn.iceblue.data.dao.SysRoleMenuDao;
 import cn.iceblue.data.service.SysRoleMenuService;
@@ -10,6 +11,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -65,6 +67,19 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuDao, SysRoleM
         pagin.setRecords(selectResult.getRecords());
         //3. 返回结果
         return pagin;
+    }
+
+    /**
+     * 根据角色ID集合查询角色菜单集合
+     *
+     * @param roleIds :
+     * @return List<SysMenuEntity>
+     * @author IceBlue
+     * @date 2025/6/23 上午11:15
+     **/
+    @Override
+    public List<SysMenuEntity> getMenuByRoleId(List<String> roleIds) {
+        return this.baseMapper.getMenuByRoleId(roleIds);
     }
 
 }

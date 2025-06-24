@@ -19,6 +19,14 @@
     <select id="selectByPage" resultType="cn.iceblue.core.pojo.entity.SysRoleMenuEntity">
         select * from dtt_sys_role_menu ${ew.customSqlSegment}
     </select>
+    <select id="getMenuByRoleId" resultType="cn.iceblue.core.pojo.entity.SysMenuEntity" parameterType="list">
+        SELECT  dsm.* FROm  dtt_sys_role_menu dsrm
+              INNER JOIN dtt_sys_menu dsm  on dsrm.menu_id = dsm.id
+        where
+        <foreach collection="list" open="role_id in(" close=")" item="id" separator=",">
+            #{id}
+        </foreach>
+    </select>
 
 
 </mapper>

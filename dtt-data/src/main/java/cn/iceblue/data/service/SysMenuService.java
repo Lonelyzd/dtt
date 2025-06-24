@@ -33,5 +33,7 @@ public interface SysMenuService extends IService<SysMenuEntity> {
      * @date 2025/6/20 下午1:17
      **/
     List<SysMenuEntity> list(SysMenuEntity sysMenuEntity);
+
+
 }
 

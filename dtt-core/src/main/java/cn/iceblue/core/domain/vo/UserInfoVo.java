@@ -1,11 +1,12 @@
 package cn.iceblue.core.domain.vo;
 
+import cn.iceblue.core.pojo.entity.SysMenuEntity;
 import lombok.Data;
 
 import java.util.List;
 
 /**
- * 用户信息,包括用户角色
+ * 用户信息,包括用户角色,菜单
  *
  * @author : IceBlue
  * @date : 2025/6/18 下午2:52
@@ -20,4 +21,6 @@ public class UserInfoVo {
     private String avatar;
 
     private String introduction;
+
+    private List<SysMenuEntity> menus;
 }

@@ -2,9 +2,12 @@ package cn.iceblue.data.service;
 
 import cn.iceblue.core.domain.po.LoginVo;
 import cn.iceblue.core.domain.vo.UserInfoVo;
+import cn.iceblue.core.pojo.entity.SysMenuEntity;
 import cn.iceblue.core.pojo.entity.SysUserEntity;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * 系统用户表
@@ -43,5 +46,13 @@ public interface SysUserService extends IService<SysUserEntity> {
      * @date 2025/6/18 下午3:04
      **/
     UserInfoVo info(String userId);
+
+    /** 获取用户菜单
+     * @author IceBlue
+     * @date 2025/6/23 下午2:07
+     * @param userId:
+     * @return List<SysMenuEntity>
+     **/
+    List<SysMenuEntity> userMenu(String userId);
 }
 

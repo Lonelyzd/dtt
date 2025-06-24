@@ -11,7 +11,7 @@ import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
-import { getMenuList } from '@/api/sys/menu'
+import store from '@/store'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -24,14 +24,14 @@ import { getMenuList } from '@/api/sys/menu'
  * redirect: noRedirect           if set noRedirect will no redirect in the breadcrumb
  * name:'router-name'             the name is used by <keep-alive> (must set!!!)
  * meta : {
-    roles: ['admin','editor']    control the page roles (you can set multiple roles)
-    title: 'title'               the name show in sidebar and breadcrumb (recommend set)
-    icon: 'svg-name'/'el-icon-x' the icon show in the sidebar
-    noCache: true                if set true, the page will no be cached(default is false)
-    affix: true                  if set true, the tag will affix in the tags-view
-    breadcrumb: false            if set false, the item will hidden in breadcrumb(default is true)
-    activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
-  }
+ roles: ['admin','editor']    control the page roles (you can set multiple roles)
+ title: 'title'               the name show in sidebar and breadcrumb (recommend set)
+ icon: 'svg-name'/'el-icon-x' the icon show in the sidebar
+ noCache: true                if set true, the page will no be cached(default is false)
+ affix: true                  if set true, the tag will affix in the tags-view
+ breadcrumb: false            if set false, the item will hidden in breadcrumb(default is true)
+ activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
+ }
  */
 
 /**
@@ -129,7 +129,7 @@ export const constantRoutes = [
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
-export const asyncRoutes = [
+export let asyncRoutes = [
   {
     path: '/permission',
     component: Layout,
@@ -419,11 +419,57 @@ const router = createRouter()
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
   const newRouter = createRouter()
-
-  getMenuList({status:0}).then(repsonse=>{
-
-  })
+  debugger
+  asyncRoutes = getMenuTree(store.getters.menus)
   router.matcher = newRouter.matcher // reset router
+}
+
+function getMenuTree(sNodes) {
+  const r = []
+  const tmpMap = {}
+
+  sNodes.forEach(item => {
+    if (!item.parentId) {
+      const newNode = {
+        parentId: item.parentId,
+        path: item.menuPath,
+        // component: () => import(`@/views${item.menuPath}`),
+        component: Layout,
+        name: item.menuName,
+        meta: {
+          title: item.menuTitle,
+          icon: item.menuIcon,
+          noCache: item?.isCache === 0
+        },
+        children: []
+      }
+      // 根菜单
+      r.push(newNode)
+      tmpMap[item.id] = newNode
+    } else {
+      const newNode = {
+        parentId: item.parentId,
+        path: item.menuPath,
+        // component: () => import(`@/views${item.menuPath}/index`),
+        component: resolve => require([`@/views${item.menuPath}/index`], resolve),
+        name: item.menuName,
+        meta: {
+          title: item.menuTitle,
+          icon: item.menuIcon,
+          noCache: item?.isCache === 0
+        },
+        children: []
+      }
+      tmpMap[item.id] = newNode
+    }
+  })
+
+  Object.entries(tmpMap).forEach(([key, value]) => {
+    if (value.parentId) {
+      tmpMap[value.parentId].children.push(value)
+    }
+  })
+  return r
 }
 
 export default router

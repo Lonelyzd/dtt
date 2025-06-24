@@ -1,5 +1,6 @@
 package cn.iceblue.data.dao;
 
+import cn.iceblue.core.pojo.entity.SysMenuEntity;
 import cn.iceblue.core.pojo.entity.SysRoleMenuEntity;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -7,6 +8,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 角色的菜单权限表
@@ -27,4 +30,14 @@ public interface SysRoleMenuDao extends BaseMapper<SysRoleMenuEntity> {
     */
     IPage<SysRoleMenuEntity> selectByPage(IPage<SysRoleMenuEntity> page , @Param(Constants.WRAPPER) Wrapper<SysRoleMenuEntity> wrapper);
 
+
+    /**
+     * 根据角色ID集合查询角色菜单集合
+     *
+     * @param roleId:
+     * @return List<SysMenuEntity>
+     * @author IceBlue
+     * @date 2025/6/23 上午11:15
+     **/
+    List<SysMenuEntity> getMenuByRoleId(List<String> roleId);
 }

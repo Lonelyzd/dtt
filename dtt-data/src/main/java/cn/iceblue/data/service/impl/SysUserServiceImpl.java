@@ -5,12 +5,16 @@ import cn.iceblue.core.domain.enums.dict.UserStatusDict;
 import cn.iceblue.core.domain.po.LoginVo;
 import cn.iceblue.core.domain.vo.UserInfoVo;
 import cn.iceblue.core.exception.DttRuntimeException;
+import cn.iceblue.core.pojo.entity.SysMenuEntity;
 import cn.iceblue.core.pojo.entity.SysRoleEntity;
 import cn.iceblue.core.pojo.entity.SysUserEntity;
+import cn.iceblue.core.pojo.entity.SysUserRoleEntity;
 import cn.iceblue.core.util.Assert;
 import cn.iceblue.core.util.RsaEncryptUtils;
 import cn.iceblue.data.dao.SysUserDao;
 import cn.iceblue.data.dao.SysUserRoleDao;
+import cn.iceblue.data.service.SysRoleMenuService;
+import cn.iceblue.data.service.SysUserRoleService;
 import cn.iceblue.data.service.SysUserService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -22,7 +26,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.jasypt.util.text.TextEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -36,6 +42,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 
     @Autowired
     private TextEncryptor textEncryptor;
+
+    @Autowired
+    private SysRoleMenuService sysRoleMenuService;
+
+    @Autowired
+    private SysUserRoleService sysUserRoleService;
+
 
     /**
      * 分页查询
@@ -159,13 +172,44 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
         vo.setIntroduction(user.getRemark());
 
         List<SysRoleEntity> sysRoleEntities = sysUserRoleDao.selectRoleByUserId(userId);
-        List<String> collect = sysRoleEntities.stream()
+        List<String> roleNameList = sysRoleEntities.stream()
                 .map(SysRoleEntity::getRoleName)
                 .collect(Collectors.toList());
 
-        vo.setRoles(collect);
+        if(!CollectionUtils.isEmpty(roleNameList)){
+            List<String> roleIdList = sysRoleEntities
+                    .stream()
+                    .map(SysRoleEntity::getId)
+                    .collect(Collectors.toList());
+            List<SysMenuEntity> menuList = sysRoleMenuService.getMenuByRoleId(roleIdList);
+            vo.setMenus(menuList);
+        }
+        vo.setRoles(roleNameList);
         return vo;
     }
 
+    /**
+     * 获取用户菜单
+     *
+     * @param userId :
+     * @return List<SysMenuEntity>
+     * @author IceBlue
+     * @date 2025/6/23 下午2:07
+     **/
+    @Override
+    public List<SysMenuEntity> userMenu(String userId) {
+        List<SysUserRoleEntity> userRoleList = sysUserRoleService.list(Wrappers
+                .<SysUserRoleEntity>lambdaQuery()
+                .eq(SysUserRoleEntity::getUserId, userId));
 
+        if (CollectionUtils.isEmpty(userRoleList)) {
+            return Collections.emptyList();
+        }
+        List<String> roleIdList = userRoleList
+                .stream()
+                .map(SysUserRoleEntity::getRoleId)
+                .collect(Collectors.toList());
+
+        return sysRoleMenuService.getMenuByRoleId(roleIdList);
+    }
 }

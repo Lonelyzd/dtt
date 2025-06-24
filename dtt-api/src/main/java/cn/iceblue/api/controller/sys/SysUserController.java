@@ -8,6 +8,7 @@ import cn.iceblue.core.domain.po.PageRequest;
 import cn.iceblue.core.domain.vo.PageVO;
 import cn.iceblue.core.domain.vo.R;
 import cn.iceblue.core.domain.vo.UserInfoVo;
+import cn.iceblue.core.pojo.entity.SysMenuEntity;
 import cn.iceblue.core.pojo.entity.SysUserEntity;
 import cn.iceblue.data.service.SysUserService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * 系统用户表
@@ -31,7 +33,6 @@ import javax.validation.Valid;
 public class SysUserController {
     @Autowired
     private SysUserService sysUserService;
-
 
     /**
      * 分页查询
@@ -147,4 +148,19 @@ public class SysUserController {
         StpUtil.logout();
         return R.ok();
     }
+
+    /**
+     * 获取用户的菜单
+     *
+     * @return R<List < SysMenuEntity>>
+     * @author IceBlue
+     * @date 2025/6/23 下午1:22
+     **/
+    @ApiOperation("获取用户菜单")
+    @GetMapping("/menu")
+    public List<SysMenuEntity> userMenu() {
+        String loginIdAsString = StpUtil.getLoginIdAsString();
+        return sysUserService.userMenu(loginIdAsString);
+    }
+
 }

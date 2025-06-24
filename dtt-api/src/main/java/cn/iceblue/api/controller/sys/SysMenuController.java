@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Api(tags = "系统/菜单表对象功能接口")
 @RestController
-@RequestMapping("sys/menu")
+@RequestMapping("/sys/menu")
 public class SysMenuController {
     @Autowired
     private SysMenuService sysMenuService;
