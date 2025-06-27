@@ -13,7 +13,7 @@ public class R<T> implements Serializable {
     /**
      * 返回处理消息
      */
-    private String message;
+    private String msg;
 
     /**
      * 返回代码
@@ -63,14 +63,14 @@ public class R<T> implements Serializable {
     public static <T> R<T> error(int code, String msg) {
         R<T> r = new R<T>();
         r.code = code;
-        r.message = msg;
+        r.msg = msg;
         return r;
     }
 
     public static <T> R<T> error(ResponseStatus status) {
         R<T> r = new R<T>();
         r.code = status.getCode();
-        r.message = status.getMessage();
+        r.msg = status.getMessage();
         return r;
     }
 

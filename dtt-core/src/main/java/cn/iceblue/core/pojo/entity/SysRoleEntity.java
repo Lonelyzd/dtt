@@ -38,4 +38,10 @@ public class SysRoleEntity extends  BaseEntity implements Serializable {
 	@ApiModelProperty(name = "status",notes = "角色状态")
 	private Integer status;
 
+	/**
+	 * 是否只读
+	 */
+	@ApiModelProperty(name = "readOnly",notes = "是否只读")
+	private Integer readOnly;
+
 }

@@ -26,9 +26,7 @@ target/*.jar
 *.ear
 /target
 /ehcache
-tss-start/ehcache
 /redis
-tss-start/redis
 
 .flattened-pom.xml
 

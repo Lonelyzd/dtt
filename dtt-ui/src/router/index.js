@@ -420,7 +420,7 @@ const router = createRouter()
 export function resetRouter() {
   const newRouter = createRouter()
   debugger
-  asyncRoutes = getMenuTree(store.getters.menus)
+  // asyncRoutes = getMenuTree(store.getters.menus)
   router.matcher = newRouter.matcher // reset router
 }
 
@@ -451,7 +451,7 @@ function getMenuTree(sNodes) {
         parentId: item.parentId,
         path: item.menuPath,
         // component: () => import(`@/views${item.menuPath}/index`),
-        component: resolve => require([`@/views${item.menuPath}/index`], resolve),
+        component: resolve => require([`@/views${item.menuPath}`], resolve),
         name: item.menuName,
         meta: {
           title: item.menuTitle,

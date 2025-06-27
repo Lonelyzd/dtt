@@ -2,7 +2,6 @@ import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 import jsencrypt from '@/utils/jsencrypt'
-import Layout from '@/layout'
 
 const state = {
   token: getToken(),

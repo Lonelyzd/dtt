@@ -36,7 +36,7 @@ public class BaseEntity implements Serializable {
     /**
      * 租户号
      */
-    @ApiModelProperty(name = "tenant_id", notes = "租户号")
+    @ApiModelProperty(name = "tenantId", notes = "租户号")
     @TableField(value = "tenant_id", fill = FieldFill.INSERT)
     private String tenantId;
     /**
@@ -47,7 +47,7 @@ public class BaseEntity implements Serializable {
     /**
      * 创建人
      */
-    @ApiModelProperty(name = "create_by", notes = "创建人")
+    @ApiModelProperty(name = "createdBy", notes = "创建人")
     @TableField(value = "created_by", fill = FieldFill.INSERT)
     private String createdBy;
     /**

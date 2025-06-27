@@ -26,6 +26,7 @@ import javax.xml.bind.ValidationException;
 @Slf4j
 @RestControllerAdvice
 public class ExceptionConfiguration {
+
     @ExceptionHandler(value = Exception.class)
     @org.springframework.web.bind.annotation.ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public R<?> handle(Exception e) {
@@ -48,11 +49,11 @@ public class ExceptionConfiguration {
      * @date 2023/7/26 16:42
      **/
     @ExceptionHandler(value = SaTokenException.class)
-    public R saTokenException(SaTokenException e, HttpServletResponse response) {
+    public R<?> saTokenException(SaTokenException e, HttpServletResponse response) {
         // 根据不同异常细分状态码返回不同的提示
         if (e.getCode() == 11012) {
             response.setStatus(ResponseStatus.UNAUTHORIZED.getCode());
-            return R.error(ResponseStatus.UNAUTHORIZED.getCode(), "用户登录已失效");
+            return R.error(ResponseStatus.UNAUTHORIZED);
         }
         return R.error(e.getCode(), e.getMessage());
     }
@@ -135,7 +136,7 @@ public class ExceptionConfiguration {
     }
 
     @ExceptionHandler(value = DttRuntimeException.class)
-    public R tssRuntimeException(DttRuntimeException e) {
+    public R dttRuntimeException(DttRuntimeException e) {
         return R.error(e.getCode(), e.getMessage());
     }
 }
