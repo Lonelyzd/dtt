@@ -15,29 +15,21 @@ import java.util.List;
  * 角色的菜单权限表
  *
  * @author IceBlue
- * @email 
+ * @email
  * @date 2025-06-03 14:18:12
  */
 @Mapper
 public interface SysRoleMenuDao extends BaseMapper<SysRoleMenuEntity> {
 
     /**
-    * 分页查询指定行数据
-    *
-    * @param page 分页参数
-    * @param wrapper 动态查询条件
-    * @return 分页对象列表
-    */
-    IPage<SysRoleMenuEntity> selectByPage(IPage<SysRoleMenuEntity> page , @Param(Constants.WRAPPER) Wrapper<SysRoleMenuEntity> wrapper);
-
-
-    /**
-     * 根据角色ID集合查询角色菜单集合
+     * 分页查询指定行数据
      *
-     * @param roleId:
-     * @return List<SysMenuEntity>
-     * @author IceBlue
-     * @date 2025/6/23 上午11:15
-     **/
-    List<SysMenuEntity> getMenuByRoleId(List<String> roleId);
+     * @param page    分页参数
+     * @param wrapper 动态查询条件
+     * @return 分页对象列表
+     */
+    IPage<SysRoleMenuEntity> selectByPage(IPage<SysRoleMenuEntity> page, @Param(Constants.WRAPPER) Wrapper<SysRoleMenuEntity> wrapper);
+
+
+
 }

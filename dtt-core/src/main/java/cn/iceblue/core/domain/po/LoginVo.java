@@ -10,14 +10,20 @@ import org.hibernate.validator.constraints.NotBlank;
  * @date : 2025/6/10 下午1:57
  **/
 @Data
-@ApiModel(value = "用户登录模型",description = "")
+@ApiModel(value = "用户登录模型", description = "")
 public class LoginVo {
 
-    @NotBlank(message="用户名不能为空")
-    @ApiModelProperty(name = "username",notes = "登录用户名")
+    @NotBlank(message = "用户名不能为空")
+    @ApiModelProperty(name = "username", notes = "登录用户名")
     private String username;
 
-    @NotBlank(message="密码不能为空")
-    @ApiModelProperty(name = "password",notes = "登录密码")
+    @NotBlank(message = "密码不能为空")
+    @ApiModelProperty(name = "password", notes = "登录密码")
     private String password;
+
+    @ApiModelProperty(name = "uuid", notes = "验证码ID")
+    private String uuid;
+
+    @ApiModelProperty(name = "code", notes = "验证码")
+    private String code;
 }

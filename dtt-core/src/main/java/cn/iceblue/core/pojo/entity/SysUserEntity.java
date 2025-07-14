@@ -69,6 +69,13 @@ public class SysUserEntity extends  BaseEntity  implements Serializable {
 	 */
 	@ApiModelProperty(name = "lastLoginIp",notes = "最后登录IP")
 	private Date lastLoginIp;
+
+	/**
+	 * 密码最后更新时间
+	 */
+	@ApiModelProperty(name = "pwdUpdateDate",notes = "密码最后更新时间")
+	private Date pwdUpdateDate;
+
 	/**
 	 * 备注
 	 */

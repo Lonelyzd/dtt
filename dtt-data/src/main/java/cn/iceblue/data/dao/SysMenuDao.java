@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.core.toolkit.Constants;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 系统菜单表
  *
@@ -27,4 +29,21 @@ public interface SysMenuDao extends BaseMapper<SysMenuEntity> {
     */
     IPage<SysMenuEntity> selectByPage(IPage<SysMenuEntity> page , @Param(Constants.WRAPPER) Wrapper<SysMenuEntity> wrapper);
 
+    /**
+     * 根据用户ID集合查询角色菜单集合
+     *
+     * @param userId:
+     * @return List<SysMenuEntity>
+     * @author IceBlue
+     * @date 2025/6/23 上午11:15
+     **/
+    List<SysMenuEntity> selectMenuByUserId(@Param("userId") String userId);
+
+    /** 根据用户ID集合查询权限集合
+    * @author IceBlue
+    * @date 2025/7/11 下午3:47
+    * @param userId:
+    * @return List<String>
+    **/
+    List<String> selectMenuPermsByUserId(@Param("userId") String userId);
 }

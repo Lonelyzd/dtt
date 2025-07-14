@@ -78,8 +78,9 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuDao, SysRoleM
      * @date 2025/6/23 上午11:15
      **/
     @Override
-    public List<SysMenuEntity> getMenuByRoleId(List<String> roleIds) {
-        return this.baseMapper.getMenuByRoleId(roleIds);
+    public List<SysMenuEntity> getMenuByRoleIds(List<String> roleIds) {
+        //zdd TODO 2025/7/9 下午3:08 : 
+        return null;
     }
 
 }

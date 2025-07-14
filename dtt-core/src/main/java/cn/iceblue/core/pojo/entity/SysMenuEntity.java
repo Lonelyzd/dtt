@@ -29,6 +29,25 @@ public class SysMenuEntity  extends  BaseEntity implements Serializable {
 	private String menuName;
 
 	/**
+	 * 组件路径
+	 */
+	@ApiModelProperty(name = "component",notes = "组件路径")
+	private String component;
+
+	/**
+	 * 路由参数
+	 */
+	@ApiModelProperty(name = "query",notes = "路由参数")
+	private String query;
+
+	/**
+	 * 路由名称
+	 */
+	@ApiModelProperty(name = "routeName",notes = "路由名称")
+	private String routeName;
+
+
+	/**
 	 * 菜单显示名称
 	 */
 	@ApiModelProperty(name = "menuTitle",notes = "菜单标题")
@@ -58,6 +77,13 @@ public class SysMenuEntity  extends  BaseEntity implements Serializable {
 	 */
 	@ApiModelProperty(name = "isCache",notes = "是否缓存")
 	private Integer isCache;
+
+	/**
+	 * 是否可见
+	 */
+	@ApiModelProperty(name = "visible",notes = "是否可见")
+	private Integer visible;
+
 	/**
 	 * 菜单类型
 	 */
@@ -88,5 +114,7 @@ public class SysMenuEntity  extends  BaseEntity implements Serializable {
 	 */
 	@ApiModelProperty(name = "readOnly",notes = "是否只读")
 	private Integer readOnly;
+
+
 
 }

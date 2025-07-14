@@ -1,136 +1,136 @@
-import { login, logout, getInfo } from '@/api/user'
+import router from '@/router'
+import { MessageBox } from 'element-ui'
+import { login, logout, getInfo } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import router, { resetRouter } from '@/router'
-import jsencrypt from '@/utils/jsencrypt'
+import { isHttp, isEmpty } from '@/utils/validate'
+import defAva from '@/assets/images/profile.jpg'
+import * as jsencrypt from '@/utils/jsencrypt'
 
-const state = {
-  token: getToken(),
-  name: '',
-  avatar: '',
-  introduction: '',
-  roles: [],
-  menus: []
-}
+const user = {
+  state: {
+    token: getToken(),
+    id: '',
+    name: '',
+    nickName: '',
+    avatar: '',
+    roles: [],
+    permissions: []
+  },
 
-const mutations = {
-  SET_TOKEN: (state, token) => {
-    state.token = token
+  mutations: {
+    SET_TOKEN: (state, token) => {
+      state.token = token
+    },
+    SET_ID: (state, id) => {
+      state.id = id
+    },
+    SET_NAME: (state, name) => {
+      state.name = name
+    },
+    SET_NICK_NAME: (state, nickName) => {
+      state.nickName = nickName
+    },
+    SET_AVATAR: (state, avatar) => {
+      state.avatar = avatar
+    },
+    SET_ROLES: (state, roles) => {
+      state.roles = roles
+    },
+    SET_PERMISSIONS: (state, permissions) => {
+      state.permissions = permissions
+    }
   },
-  SET_INTRODUCTION: (state, introduction) => {
-    state.introduction = introduction
-  },
-  SET_NAME: (state, name) => {
-    state.name = name
-  },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
-  },
-  SET_ROLES: (state, roles) => {
-    state.roles = roles
-  },
-  SET_MENUS: (state, menus) => {
-    state.menus = menus
-  }
-}
 
-const actions = {
-  // user login
-  login({ commit }, userInfo) {
-    const { username, password } = userInfo
-    return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: jsencrypt.encrypt(password) }).then(response => {
-        const { data } = response
-        commit('SET_TOKEN', data.tokenValue)
-        setToken(data.tokenValue)
-        resolve()
-      }).catch(error => {
-        reject(error)
+  actions: {
+    // 登录
+    Login({ commit }, userInfo) {
+      const username = userInfo.username.trim()
+      const password = jsencrypt.encrypt(userInfo.password)
+      const code = userInfo.code
+      const uuid = userInfo.uuid
+      return new Promise((resolve, reject) => {
+        login(username, password, code, uuid).then(res => {
+          setToken(res.tokenValue)
+          commit('SET_TOKEN', res.tokenValue)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
       })
-    })
-  },
+    },
 
-  // get user info
-  getInfo({ commit, state }) {
-    return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-        const { data } = response
-        if (!data) {
-          reject('Verification failed, please Login again.')
-        }
-
-        const { roles, name, avatar, introduction, menus } = data
-
-        // roles must be a non-empty array
-        if (!roles || roles.length <= 0) {
-          reject('getInfo: roles must be a non-null array!')
-        }
-        resetRouter()
-        commit('SET_ROLES', roles)
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
-        commit('SET_INTRODUCTION', introduction)
-        commit('SET_MENUS', menus)
-        resolve(data)
-      }).catch(error => {
-        reject(error)
+    // 获取用户信息
+    GetInfo({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        getInfo().then(res => {
+          const user = res.user
+          let avatar = res.avatar || ''
+          if (!isHttp(avatar)) {
+            avatar = (isEmpty(avatar)) ? defAva : process.env.VUE_APP_BASE_API + avatar
+          }
+          if (res.roles && res.roles.length > 0) { // 验证返回的roles是否是一个非空数组
+            commit('SET_ROLES', res.roles)
+            commit('SET_PERMISSIONS', res.permissions)
+          } else {
+            commit('SET_ROLES', ['ROLE_DEFAULT'])
+          }
+          commit('SET_ID', res.userId)
+          commit('SET_NAME', res.name)
+          commit('SET_NICK_NAME', res.name)
+          commit('SET_AVATAR', avatar)
+          /* 初始密码提示 */
+          if (res.isDefaultModifyPwd) {
+            MessageBox.confirm('您的密码还是初始密码，请修改密码！', '安全提示', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning'
+            }).then(() => {
+              router.push({ name: 'Profile', params: { activeTab: 'resetPwd' } })
+            }).catch(() => {
+            })
+          }
+          /* 过期密码提示 */
+          if (!res.isDefaultModifyPwd && res.isPasswordExpired) {
+            MessageBox.confirm('您的密码已过期，请尽快修改密码！', '安全提示', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning'
+            }).then(() => {
+              router.push({ name: 'Profile', params: { activeTab: 'resetPwd' } })
+            }).catch(() => {
+            })
+          }
+          resolve(res)
+        }).catch(error => {
+          reject(error)
+        })
       })
-    })
-  },
+    },
 
-  // user logout
-  logout({ commit, state, dispatch }) {
-    return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
+    // 退出系统
+    LogOut({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        logout(state.token).then(() => {
+          commit('SET_TOKEN', '')
+          commit('SET_ROLES', [])
+          commit('SET_PERMISSIONS', [])
+          removeToken()
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+
+    // 前端 登出
+    FedLogOut({ commit }) {
+      return new Promise(resolve => {
         commit('SET_TOKEN', '')
-        commit('SET_ROLES', [])
         removeToken()
-        resetRouter()
-
-        // reset visited views and cached views
-        // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
-        dispatch('tagsView/delAllViews', null, { root: true })
-
         resolve()
-      }).catch(error => {
-        reject(error)
       })
-    })
-  },
-
-  // remove token
-  resetToken({ commit }) {
-    return new Promise(resolve => {
-      commit('SET_TOKEN', '')
-      commit('SET_ROLES', [])
-      removeToken()
-      resolve()
-    })
-  },
-
-  // dynamically modify permissions
-  async changeRoles({ commit, dispatch }, role) {
-    const token = role + '-token'
-
-    commit('SET_TOKEN', token)
-    setToken(token)
-
-    const { roles } = await dispatch('getInfo')
-
-    resetRouter()
-
-    // generate accessible routes map based on roles
-    const accessRoutes = await dispatch('permission/generateRoutes', roles, { root: true })
-    // dynamically add accessible routes
-    router.addRoutes(accessRoutes)
-
-    // reset visited views and cached views
-    dispatch('tagsView/delAllViews', null, { root: true })
+    }
   }
 }
 
-export default {
-  namespaced: true,
-  state,
-  mutations,
-  actions
-}
+export default user

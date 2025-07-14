@@ -1,7 +1,7 @@
 package cn.iceblue.api.controller.sys;
 
 import cn.iceblue.core.domain.po.PageRequest;
-import cn.iceblue.core.domain.vo.PageVO;
+import cn.iceblue.core.domain.vo.PageVo;
 import cn.iceblue.core.domain.vo.R;
 import cn.iceblue.core.pojo.entity.SysUserRoleEntity;
 import cn.iceblue.data.service.SysUserRoleService;
@@ -36,7 +36,7 @@ public class SysUserRoleController {
      */
     @ApiOperation("分页查询")
     @GetMapping
-    public R<PageVO<SysUserRoleEntity>> paginQuery(SysUserRoleEntity sysUserRoleEntity, PageRequest pageRequest) {
+    public R<PageVo<SysUserRoleEntity>> paginQuery(SysUserRoleEntity sysUserRoleEntity, PageRequest pageRequest) {
         //1.分页参数
         long current = pageRequest.getPage();
         long size = pageRequest.getPageSize();
@@ -44,7 +44,7 @@ public class SysUserRoleController {
         /*把Mybatis的分页对象做封装转换，MP的分页对象上有一些SQL敏感信息，还是通过spring的分页模型来封装数据吧*/
         Page<SysUserRoleEntity> pageResult = sysUserRoleService.pagingQuery(sysUserRoleEntity, current, size);
         //3. 分页结果组装
-        return R.ok(new PageVO<>(current, size, pageResult.getTotal(), pageResult.getRecords()));
+        return R.ok(new PageVo<>(current, size, pageResult.getTotal(), pageResult.getRecords()));
     }
 
 

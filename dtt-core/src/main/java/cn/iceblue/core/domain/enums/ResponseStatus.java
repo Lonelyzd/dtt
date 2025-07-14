@@ -3,7 +3,7 @@ package cn.iceblue.core.domain.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-/**
+/**请求返回状态
  * @author : IceBlue
  * @date : 2025/6/11 上午10:56
  **/
@@ -15,6 +15,8 @@ public enum ResponseStatus {
     BAD_REQUEST(400,"错误的请求"),
     NOT_FOUND(404,"请求资源不存在"),
     UNAUTHORIZED(401,"未授权的操作"),
+    REPEAT_SUBMIT(409,"不允许重复提交，请稍候再试"),
+    TOO_MANY_REQUESTS(429,"请求被限流"),
     ;
 
     private final int code;

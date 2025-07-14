@@ -12,10 +12,12 @@ import lombok.Getter;
 public enum ResponseTemplate {
 
     USER_NON_EXISTENT(ResponseStatus.NOT_FOUND, "登录用户不存在"),
-    USER_LOCKED(ResponseStatus.FAILED, "用户已锁定"),
+    LOGIN_USER_LOCKED(ResponseStatus.FAILED, "用户已锁定"),
     LOGIN_FAIL(ResponseStatus.FAILED, "登录失败,用户名或密码错误"),
+    LOGIN_CAPTCHA_EXPIRE(ResponseStatus.FAILED, "验证码已失效"),
+    LOGIN_CAPTCHA_EXCEPTION(ResponseStatus.FAILED, "验证码错误"),
     DECODE_ERROR(ResponseStatus.FAILED, "解码异常"),
-    ;
+    IP_BLACK(ResponseStatus.UNAUTHORIZED, "IP被锁定");
 
     /**
      * 模版代码

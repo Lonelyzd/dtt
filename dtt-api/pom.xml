@@ -23,11 +23,7 @@
 
         <dependency>
             <groupId>cn.iceblue</groupId>
-            <artifactId>dtt-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.iceblue</groupId>
-            <artifactId>dtt-data</artifactId>
+            <artifactId>dtt-framework</artifactId>
         </dependency>
         <!-- Sa-Token 权限认证，在线文档：https://sa-token.cc -->
         <dependency>

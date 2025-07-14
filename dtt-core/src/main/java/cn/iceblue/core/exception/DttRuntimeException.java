@@ -50,6 +50,9 @@ public class DttRuntimeException extends RuntimeException {
         this(ex, tssResponseMsg.getCode().getCode(), tssResponseMsg.getText(), params);
     }
 
+    public DttRuntimeException(ResponseTemplate tssResponseMsg, Object... params) {
+        this(null, tssResponseMsg.getCode().getCode(), tssResponseMsg.getText(), params);
+    }
 
     @Override
     public String getMessage() {

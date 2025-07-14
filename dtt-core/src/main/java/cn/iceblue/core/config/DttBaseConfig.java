@@ -19,6 +19,24 @@ public class DttBaseConfig {
      */
     private static String captchaType;
 
+    /**
+     * 获取地址开关
+     */
+    private static boolean addressEnabled;
+
+    /**
+     * 上传路径
+     */
+    private static String uploadPath;
+
+    public static boolean isAddressEnabled() {
+        return addressEnabled;
+    }
+
+    public void setAddressEnabled(boolean addressEnabled) {
+        DttBaseConfig.addressEnabled = addressEnabled;
+    }
+
 
     public static String getCaptchaType() {
         return captchaType;
@@ -27,4 +45,13 @@ public class DttBaseConfig {
     public void setCaptchaType(String captchaType) {
         DttBaseConfig.captchaType = captchaType;
     }
+
+    public static String getUploadPath() {
+        return uploadPath;
+    }
+
+    public void setUploadPath(String uploadPath) {
+        DttBaseConfig.uploadPath = uploadPath;
+    }
+
 }

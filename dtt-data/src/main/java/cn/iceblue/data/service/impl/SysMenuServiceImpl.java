@@ -11,8 +11,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 
 @Service("sysMenuService")
@@ -146,5 +145,38 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> i
     }
 
 
+    /**
+     * 根据用户ID查询用户所有菜单
+     *
+     * @param userId:
+     * @return List<SysMenuEntity>
+     * @author IceBlue
+     * @date 2025/7/9 下午3:46
+     **/
+    @Override
+    public List<SysMenuEntity> getSysMenuByUserId(String userId) {
+        return this.baseMapper.selectMenuByUserId(userId);
+    }
+
+    /**
+     * 根据用户ID查询用户所有权限
+     *
+     * @param userId:
+     * @return List<String>
+     * @author IceBlue
+     * @date 2025/7/11 下午3:50
+     **/
+    @Override
+    public Set<String> getMenuPermsByUserId(String userId) {
+        List<String> strings = this.baseMapper.selectMenuPermsByUserId(userId);
+
+        Set<String> permsSet = new HashSet<>();
+        for (String perm : strings) {
+            if (StringUtils.isNotEmpty(perm)) {
+                permsSet.addAll(Arrays.asList(perm.trim().split(",")));
+            }
+        }
+        return permsSet;
+    }
 
 }

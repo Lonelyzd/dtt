@@ -1,16 +1,20 @@
 server:
-  port: 8081
+  port: 8082
   servlet:
     context-path: /data-transmission-tool
 spring:
   datasource:
-    url: jdbc:postgresql://172.17.17.237:15432/DTT
+    url: jdbc:postgresql://192.168.163.131:5432/DTT
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: abc123
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
   redis:
     # 地址
-    host: localhost
+    host: 192.168.163.131
     # 端口，默认为6379
     port: 63791
     # 数据库索引
@@ -38,12 +42,25 @@ jasypt:
     password: aa
 
 dtt:
+  # 验证码类型 math 数字计算 char 字符验证
   captchaType: math
+  # 获取ip地址开关
+  addressEnabled: false
+  # 文件路径 示例（ Windows配置D:/ruoyi/uploadPath，Linux配置 /home/ruoyi/uploadPath）
+  upload-path: D:/ruoyi/uploadPath
+  # token配置
+  token:
+    # 令牌自定义标识
+    header: Authorization
+    # 令牌密钥
+    secret: abcdefghijklmnopqrstuvwxyz
+    # 令牌有效期（默认30分钟）
+    expireTime: 30
 
 ############## Sa-Token 配置 (文档: https://sa-token.cc) ##############
 sa-token:
   # token名称 (同时也是cookie名称)
-  token-name: X-Token
+  token-name: DTT-Token
   # token有效期，单位s 默认30天, -1代表永不过期
   timeout: 2592000
   # token临时有效期 (指定时间内无操作就视为token过期) 单位: 秒, -1代表永不过期

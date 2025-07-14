@@ -3,7 +3,7 @@
 
 <mapper namespace="cn.iceblue.data.dao.SysRoleMenuDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="cn.iceblue.core.pojo.entity.SysRoleMenuEntity" id="sysRoleMenuMap">
         <result property="id" column="id"/>
         <result property="roleId" column="role_id"/>
@@ -17,16 +17,10 @@
     </resultMap>
 
     <select id="selectByPage" resultType="cn.iceblue.core.pojo.entity.SysRoleMenuEntity">
-        select * from dtt_sys_role_menu ${ew.customSqlSegment}
+        select *
+        from dtt_sys_role_menu ${ew.customSqlSegment}
     </select>
-    <select id="getMenuByRoleId" resultType="cn.iceblue.core.pojo.entity.SysMenuEntity" parameterType="list">
-        SELECT  dsm.* FROm  dtt_sys_role_menu dsrm
-              INNER JOIN dtt_sys_menu dsm  on dsrm.menu_id = dsm.id
-        where
-        <foreach collection="list" open="role_id in(" close=")" item="id" separator=",">
-            #{id}
-        </foreach>
-    </select>
+
 
 
 </mapper>

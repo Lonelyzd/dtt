@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * 系统菜单表
@@ -35,5 +36,24 @@ public interface SysMenuService extends IService<SysMenuEntity> {
     List<SysMenuEntity> list(SysMenuEntity sysMenuEntity);
 
 
+    /**
+     * 根据用户ID查询用户所有菜单
+     *
+     * @param userId:
+     * @return List<SysMenuEntity>
+     * @author IceBlue
+     * @date 2025/7/9 下午3:46
+     **/
+    List<SysMenuEntity> getSysMenuByUserId(String userId);
+
+    /**
+     * 根据用户ID查询用户所有权限
+     *
+     * @param userId:
+     * @return List<String>
+     * @author IceBlue
+     * @date 2025/7/11 下午3:50
+     **/
+    Set<String> getMenuPermsByUserId(String userId);
 }
 

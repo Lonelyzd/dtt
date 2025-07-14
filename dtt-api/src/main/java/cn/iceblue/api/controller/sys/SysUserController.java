@@ -5,12 +5,13 @@ import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.iceblue.core.domain.po.LoginVo;
 import cn.iceblue.core.domain.po.PageRequest;
-import cn.iceblue.core.domain.vo.PageVO;
+import cn.iceblue.core.domain.vo.PageVo;
 import cn.iceblue.core.domain.vo.R;
+import cn.iceblue.core.domain.vo.RouterVo;
 import cn.iceblue.core.domain.vo.UserInfoVo;
-import cn.iceblue.core.pojo.entity.SysMenuEntity;
 import cn.iceblue.core.pojo.entity.SysUserEntity;
 import cn.iceblue.data.service.SysUserService;
+import cn.iceblue.framework.web.service.SysLoginService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,6 +35,9 @@ public class SysUserController {
     @Autowired
     private SysUserService sysUserService;
 
+    @Autowired
+    private SysLoginService sysLoginService;
+
     /**
      * 分页查询
      *
@@ -43,7 +47,7 @@ public class SysUserController {
      */
     @ApiOperation("分页查询")
     @GetMapping
-    public R<PageVO<SysUserEntity>> paginQuery(SysUserEntity sysUserEntity, PageRequest pageRequest) {
+    public R<PageVo<SysUserEntity>> paginQuery(SysUserEntity sysUserEntity, PageRequest pageRequest) {
         //1.分页参数
         long current = pageRequest.getPage();
         long size = pageRequest.getPageSize();
@@ -51,7 +55,7 @@ public class SysUserController {
         /*把Mybatis的分页对象做封装转换，MP的分页对象上有一些SQL敏感信息，还是通过spring的分页模型来封装数据吧*/
         Page<SysUserEntity> pageResult = sysUserService.pagingQuery(sysUserEntity, current, size);
         //3. 分页结果组装
-        return R.ok(new PageVO<>(current, size, pageResult.getTotal(), pageResult.getRecords()));
+        return R.ok(new PageVo<>(current, size, pageResult.getTotal(), pageResult.getRecords()));
     }
 
 
@@ -117,7 +121,7 @@ public class SysUserController {
     @ApiOperation("用户登录")
     @PostMapping("/login")
     public R<SaTokenInfo> login(@RequestBody @Valid LoginVo sysUser) {
-        SysUserEntity entity = sysUserService.login(sysUser);
+        SysUserEntity entity = sysLoginService.login(sysUser.getUsername(), sysUser.getPassword(), sysUser.getCode(), sysUser.getUuid());
 
         // 第1步，先登录上
         StpUtil.login(entity.getId());
@@ -158,9 +162,9 @@ public class SysUserController {
      **/
     @ApiOperation("获取用户菜单")
     @GetMapping("/menu")
-    public List<SysMenuEntity> userMenu() {
+    public List<RouterVo> userMenu() {
         String loginIdAsString = StpUtil.getLoginIdAsString();
-        return sysUserService.userMenu(loginIdAsString);
+        List<RouterVo> routerVos = sysUserService.userMenu(loginIdAsString);
+        return routerVos;
     }
-
 }

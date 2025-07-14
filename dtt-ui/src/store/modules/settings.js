@@ -1,19 +1,25 @@
-import variables from '@/styles/element-variables.scss'
 import defaultSettings from '@/settings'
+import { useDynamicTitle } from '@/utils/dynamicTitle'
 
-const { showSettings, tagsView, fixedHeader, sidebarLogo } = defaultSettings
+const { sideTheme, showSettings, topNav, tagsView, tagsIcon, fixedHeader, sidebarLogo, dynamicTitle, footerVisible, footerContent } = defaultSettings
 
+const storageSetting = JSON.parse(localStorage.getItem('layout-setting')) || ''
 const state = {
-  theme: variables.theme,
+  title: '',
+  theme: storageSetting.theme || '#409EFF',
+  sideTheme: storageSetting.sideTheme || sideTheme,
   showSettings: showSettings,
-  tagsView: tagsView,
-  fixedHeader: fixedHeader,
-  sidebarLogo: sidebarLogo
+  topNav: storageSetting.topNav === undefined ? topNav : storageSetting.topNav,
+  tagsView: storageSetting.tagsView === undefined ? tagsView : storageSetting.tagsView,
+  tagsIcon: storageSetting.tagsIcon === undefined ? tagsIcon : storageSetting.tagsIcon,
+  fixedHeader: storageSetting.fixedHeader === undefined ? fixedHeader : storageSetting.fixedHeader,
+  sidebarLogo: storageSetting.sidebarLogo === undefined ? sidebarLogo : storageSetting.sidebarLogo,
+  dynamicTitle: storageSetting.dynamicTitle === undefined ? dynamicTitle : storageSetting.dynamicTitle,
+  footerVisible: storageSetting.footerVisible === undefined ? footerVisible : storageSetting.footerVisible,
+  footerContent: footerContent
 }
-
 const mutations = {
   CHANGE_SETTING: (state, { key, value }) => {
-    // eslint-disable-next-line no-prototype-builtins
     if (state.hasOwnProperty(key)) {
       state[key] = value
     }
@@ -21,8 +27,14 @@ const mutations = {
 }
 
 const actions = {
+  // 修改布局设置
   changeSetting({ commit }, data) {
     commit('CHANGE_SETTING', data)
+  },
+  // 设置网页标题
+  setTitle({ commit }, title) {
+    state.title = title
+    useDynamicTitle()
   }
 }
 

@@ -33,6 +33,6 @@ public interface SysRoleMenuService extends IService<SysRoleMenuEntity> {
      * @author IceBlue
      * @date 2025/6/23 上午11:15
      **/
-    List<SysMenuEntity> getMenuByRoleId(List<String> roleIds);
+    List<SysMenuEntity> getMenuByRoleIds(List<String> roleIds);
 }
 

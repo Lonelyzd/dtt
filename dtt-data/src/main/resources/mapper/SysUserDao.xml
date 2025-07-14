@@ -22,6 +22,7 @@
         <result property="createdTime" column="created_time"/>
         <result property="updatedBy" column="updated_by"/>
         <result property="updatedTime" column="updated_time"/>
+        <result property="pwdUpdateDate" column="pwd_update_date"/>
     </resultMap>
 
     <select id="selectByPage" resultType="cn.iceblue.core.pojo.entity.SysUserEntity">

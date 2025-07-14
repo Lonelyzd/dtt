@@ -44,7 +44,8 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns(
                         "/sys/user/login",
                         "/api/user/change-password",
-                        "/captchaImage"
+                        "/captchaImage",
+                        "/sys/user/logout"
 
                 );
     }
@@ -54,7 +55,7 @@ public class WebConfig implements WebMvcConfigurer {
      *
      * @param registry:
      * @return void
-     * @author z_dd
+     * @author IceBlue
      * @date 2023/5/30 13:58
      **/
     @Override
@@ -74,7 +75,7 @@ public class WebConfig implements WebMvcConfigurer {
      *
      * @param registry:
      * @return void
-     * @author z_dd
+     * @author IceBlue
      * @date 2023/5/30 15:11
      **/
     @Override

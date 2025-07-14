@@ -19,6 +19,7 @@
         <module>dtt-api</module>
         <module>dtt-test</module>
         <module>dtt-data</module>
+        <module>dtt-framework</module>
         <module>dtt-ui</module>
     </modules>
     <packaging>pom</packaging>
@@ -49,6 +50,10 @@
         <satoken.starter.version>1.34.0</satoken.starter.version>
         <jasypt.starter.version>3.0.5</jasypt.starter.version>
         <kaptcha.version>2.3.3</kaptcha.version>
+        <bitwalker.version>1.21</bitwalker.version>
+        <fastjson.version>2.0.57</fastjson.version>
+        <druid.version>1.2.23</druid.version>
+        <oshi.version>6.8.2</oshi.version>
     </properties>
     <dependencies>
         <dependency>
@@ -110,6 +115,11 @@
                 <artifactId>dtt-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>cn.iceblue</groupId>
+                <artifactId>dtt-framework</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>cn.hutool</groupId>
@@ -163,6 +173,33 @@
                 <groupId>pro.fessional</groupId>
                 <artifactId>kaptcha</artifactId>
                 <version>${kaptcha.version}</version>
+            </dependency>
+
+            <!-- 阿里数据库连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- 解析客户端操作系统、浏览器等 -->
+            <dependency>
+                <groupId>eu.bitwalker</groupId>
+                <artifactId>UserAgentUtils</artifactId>
+                <version>${bitwalker.version}</version>
+            </dependency>
+            <!-- 阿里JSON解析器 -->
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!-- 获取系统信息 -->
+            <dependency>
+                <groupId>com.github.oshi</groupId>
+                <artifactId>oshi-core</artifactId>
+                <version>${oshi.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

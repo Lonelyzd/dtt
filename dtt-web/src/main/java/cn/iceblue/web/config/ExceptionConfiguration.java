@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingRequestValueException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import javax.xml.bind.ValidationException;
@@ -40,6 +42,17 @@ public class ExceptionConfiguration {
     }
 
     /**
+     * 请求方式不支持
+     */
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public R<?> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException e,
+                                                    HttpServletRequest request) {
+        String requestURI = request.getRequestURI();
+        log.error("请求地址'{}',不支持'{}'请求", requestURI, e.getMethod());
+        return R.error(e.getMessage());
+    }
+
+    /**
      * sa-token校验异常
      *
      * @param e:
@@ -52,7 +65,7 @@ public class ExceptionConfiguration {
     public R<?> saTokenException(SaTokenException e, HttpServletResponse response) {
         // 根据不同异常细分状态码返回不同的提示
         if (e.getCode() == 11012) {
-            response.setStatus(ResponseStatus.UNAUTHORIZED.getCode());
+//            response.setStatus(ResponseStatus.UNAUTHORIZED.getCode());
             return R.error(ResponseStatus.UNAUTHORIZED);
         }
         return R.error(e.getCode(), e.getMessage());
