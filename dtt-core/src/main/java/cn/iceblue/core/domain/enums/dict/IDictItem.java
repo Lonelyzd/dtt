@@ -1,6 +1,9 @@
 package cn.iceblue.core.domain.enums.dict;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @Author: IceBlue
@@ -63,5 +66,27 @@ public interface IDictItem<T extends Serializable> {
      */
     default boolean equals(T k) {
         return this.getCode().equals(k);
+    }
+
+    /**
+     * 根据字典类名,获取字典枚举类所有
+     *
+     * @param dicName:
+     * @return List<Class < IDictItem>>
+     * @author IceBlue
+     * @date 2025/7/14 下午4:30
+     **/
+    static List<IDictItem> getSubClass(String dicName) {
+        String packageName = IDictItem.class.getPackage().getName();
+        try {
+            Class<?> aClass = Class.forName(packageName + "." + dicName);
+            if (IDictItem.class.isAssignableFrom(aClass)) {
+                IDictItem[] enumConstants = (IDictItem[]) aClass.getEnumConstants();
+                return Arrays.asList(enumConstants);
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
     }
 }

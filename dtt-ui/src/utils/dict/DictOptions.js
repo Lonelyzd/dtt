@@ -15,18 +15,18 @@ export const options = {
        * 字典响应数据转换器，方法签名为function(response: Object, dictMeta: DictMeta): DictData
        */
       responseConverter,
-      labelField: 'label',
-      valueField: 'value',
+      labelField: 'value',
+      valueField: 'key',
     },
   },
   /**
    * 默认标签字段
    */
-  DEFAULT_LABEL_FIELDS: ['label', 'name', 'title'],
+  DEFAULT_LABEL_FIELDS: ['label', 'name', 'title', 'key'],
   /**
    * 默认值字段
    */
-  DEFAULT_VALUE_FIELDS: ['value', 'id', 'uid', 'key'],
+  DEFAULT_VALUE_FIELDS: ['value', 'id', 'uid'],
 }
 
 /**

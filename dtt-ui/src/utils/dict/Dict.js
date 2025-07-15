@@ -75,7 +75,7 @@ function loadDict(dict, dictMeta) {
       }
       dict.type[type].splice(0, Number.MAX_SAFE_INTEGER, ...dicts)
       dicts.forEach(d => {
-        Vue.set(dict.label[type], d.value, d.label)
+        Vue.set(dict.label[type], d.value, d.key)
       })
       return dicts
     })
